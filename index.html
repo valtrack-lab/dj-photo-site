@@ -13,7 +13,7 @@
       color:white;
     }
 
-    /* ================= HEADER / HERO ================= */
+    /* ================= HERO / HEADER ================= */
     header{
       min-height:420px;
       padding:90px 20px;
@@ -22,24 +22,68 @@
       overflow:hidden;
       color:#eaf2ff;
 
-      /* 👉 IMAGE RÉELLE EN FOND */
+      /* Fond photo + voile sombre */
       background:
-        linear-gradient(135deg, rgba(8,12,25,.85), rgba(8,12,25,.35)),
-        url("image/hero.jpg");
+        linear-gradient(135deg, rgba(8,12,25,.88), rgba(8,12,25,.35)),
+        url("images/hero.jpg");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
     }
 
-    /* Effets de lumière colorés */
+    /* Lumières colorées (spots) */
     header::before{
       content:"";
       position:absolute;
-      inset:0;
+      inset:-40px;
       background:
-        radial-gradient(900px 420px at 15% 15%, rgba(124,92,255,.45), transparent 60%),
-        radial-gradient(900px 420px at 85% 10%, rgba(32,211,255,.35), transparent 65%);
+        radial-gradient(700px 360px at 18% 20%, rgba(124,92,255,.55), transparent 62%),
+        radial-gradient(720px 380px at 85% 12%, rgba(32,211,255,.45), transparent 65%),
+        radial-gradient(900px 420px at 50% 120%, rgba(255,255,255,.10), transparent 55%);
       pointer-events:none;
+      animation: lightsMove 6.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes lightsMove{
+      0%   { transform: translate3d(-10px,-8px,0) scale(1);   filter:saturate(1.05); }
+      100% { transform: translate3d(12px,10px,0)  scale(1.02); filter:saturate(1.2); }
+    }
+
+    /* Image platines en overlay (optionnelle) */
+    .decks{
+      position:absolute;
+      left:50%;
+      bottom:-30px;
+      transform:translateX(-50%);
+      width:min(860px, 92vw);
+      opacity:.28;
+      z-index:0;
+      pointer-events:none;
+      filter: contrast(1.08) saturate(1.05);
+      mix-blend-mode: screen;
+    }
+
+    /* Flashs (on crée des “éclats” par-dessus) */
+    .flash{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:0;
+      background:
+        radial-gradient(320px 220px at var(--x,50%) var(--y,30%), rgba(255,255,255,.95), rgba(255,255,255,0) 65%),
+        radial-gradient(900px 420px at var(--x2,60%) var(--y2,40%), rgba(255,255,255,.35), rgba(255,255,255,0) 70%);
+      mix-blend-mode: screen;
+    }
+
+    .flash.active{
+      animation: flashPop 260ms ease-out forwards;
+    }
+
+    @keyframes flashPop{
+      0%   { opacity:0; }
+      20%  { opacity:1; }
+      100% { opacity:0; }
     }
 
     /* Bloc texte central */
@@ -74,110 +118,16 @@
       opacity:.95;
     }
 
-    /* ================= SECTIONS ================= */
-    section{
-      max-width:1100px;
-      margin:auto;
-      padding:60px 20px;
+    /* Petit “sparkle” style flash photo dans le titre */
+    .spark{
+      display:inline-block;
+      width:10px;height:10px;
+      margin-left:10px;
+      border-radius:50%;
+      background:rgba(255,255,255,.95);
+      box-shadow: 0 0 18px rgba(255,255,255,.95);
+      animation: sparkle 1.8s infinite;
+      vertical-align:middle;
     }
-
-    h2{
-      margin-bottom:20px;
-      font-size:26px;
-    }
-
-    .services{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-      gap:26px;
-    }
-
-    .card{
-      background:#020617;
-      padding:26px;
-      border-radius:16px;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
-    }
-
-    .card h3{
-      margin-top:0;
-    }
-
-    /* ================= CONTACT ================= */
-    .contact p{
-      line-height:1.8;
-    }
-
-    a{
-      color:#22d3ee;
-      text-decoration:none;
-    }
-
-    a:hover{
-      text-decoration:underline;
-    }
-
-    /* ================= FOOTER ================= */
-    footer{
-      text-align:center;
-      padding:24px;
-      border-top:1px solid #1e293b;
-      color:#94a3b8;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <div class="heroBox">
-    <div class="brand">Valtrack, Son &amp; Lumière</div>
-    <h1>DJ Animateur &amp; Photographe</h1>
-    <p>Mariages • Anniversaires • Événements privés</p>
-  </div>
-</header>
-
-<section>
-  <h2>Mes prestations</h2>
-  <div class="services">
-    <div class="card">
-      <h3>🎧 DJ &amp; Animation</h3>
-      <p>
-        Ambiance sur mesure, playlist personnalisée,
-        micro, animations et gestion des temps forts.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>📸 Photographie</h3>
-      <p>
-        Reportage événementiel, photos naturelles,
-        retouches professionnelles et souvenirs durables.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>✨ Packs DJ + Photo</h3>
-      <p>
-        Un seul prestataire pour une organisation
-        simple, fluide et efficace.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="contact">
-  <h2>Contact</h2>
-  <p>
-    📞 Téléphone : <strong>À compléter</strong><br>
-    📍 Zone : <strong>À compléter</strong><br>
-    📷 Instagram : <a href="#">Lien Instagram</a>
-  </p>
-</section>
-
-<footer>
-  © 2026 – Valtrack, Son &amp; Lumière
-</footer>
-
-</body>
-</html>
+    @keyframes sparkle{
+      0%,70% { transform:scale(.35); opacity:.1; }
