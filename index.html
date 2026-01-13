@@ -15,7 +15,7 @@
 
     /* ================= HERO ================= */
     header{
-      min-height:480px;
+      min-height:500px;
       padding:90px 20px;
       text-align:center;
       position:relative;
@@ -35,8 +35,8 @@
       inset:-30%;
       z-index:0;
       pointer-events:none;
-      filter: blur(28px);
-      opacity:.55;
+      filter: blur(30px);
+      opacity:.6;
       mix-blend-mode: screen;
     }
     .smoke::before,
@@ -49,16 +49,16 @@
         radial-gradient(circle at 30% 70%, rgba(255,255,255,.35), transparent 55%),
         radial-gradient(circle at 60% 80%, rgba(255,255,255,.25), transparent 60%),
         radial-gradient(circle at 80% 65%, rgba(255,255,255,.30), transparent 55%);
-      animation: smokeMove 16s linear infinite;
+      animation: smokeMove 18s linear infinite;
     }
     .smoke::after{
-      animation-duration: 22s;
-      opacity:.65;
+      animation-duration: 26s;
+      opacity:.7;
     }
     @keyframes smokeMove{
-      0%   { transform: translateY(60px) translateX(-40px) scale(1); }
-      50%  { transform: translateY(-20px) translateX(20px) scale(1.1); }
-      100% { transform: translateY(-90px) translateX(60px) scale(1.2); }
+      0%   { transform: translateY(80px) translateX(-60px) scale(1); }
+      50%  { transform: translateY(-30px) translateX(20px) scale(1.15); }
+      100% { transform: translateY(-120px) translateX(80px) scale(1.3); }
     }
 
     /* ================= LYRES ================= */
@@ -68,7 +68,7 @@
       z-index:0;
       pointer-events:none;
       mix-blend-mode: screen;
-      filter: saturate(1.9) contrast(1.3);
+      filter: saturate(1.9) contrast(1.25);
     }
     .beam{
       position:absolute;
@@ -76,6 +76,8 @@
       width:560px;
       height:1000px;
       transform-origin: top center;
+      animation: lyrePan .9s ease-in-out infinite alternate,
+                 lyrePulse .45s linear infinite;
     }
     .beam::before{
       content:"";
@@ -104,67 +106,88 @@
       filter: blur(18px);
     }
 
-    .b1{ left:-6%;  --c:255,50,120; }
-    .b2{ left:18%;  --c:0,220,255; }
-    .b3{ left:42%;  --c:165,90,255; }
-    .b4{ left:66%;  --c:60,255,140; }
+    .b1{ left:18%; --c:255,60,140; }
+    .b2{ left:42%; --c:60,200,255; }
+    .b3{ left:66%; --c:160,90,255; }
 
-    .beam{
-      animation: lyrePan .85s ease-in-out infinite alternate,
-                 lyrePulse .45s linear infinite;
-    }
     @keyframes lyrePan{
-      0%   { transform: translateX(-18px) rotate(-22deg); }
-      100% { transform: translateX(18px)  rotate(22deg); }
+      0%   { transform: rotate(-20deg); }
+      100% { transform: rotate(20deg); }
     }
     @keyframes lyrePulse{
       0%,100%{ opacity:.75; }
       50%    { opacity:1; }
     }
 
-    /* ================= LASER ================= */
+    /* ================= LASERS DE CÔTÉ ================= */
+    .lasers{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      mix-blend-mode: screen;
+      filter: saturate(1.8);
+    }
+
     .laser{
       position:absolute;
       top:0;
-      left:50%;
-      width:4px;
+      width:14px;
       height:120%;
-      transform-origin: top center;
+      opacity:.95;
+      filter: blur(.8px);
+      animation: laserFlicker .35s infinite alternate;
+    }
+
+    /* gauche */
+    .laser.left{
+      left:-20px;
+      transform: rotate(12deg);
       background: linear-gradient(
         to bottom,
         rgba(0,255,120,0),
-        rgba(0,255,120,.95),
+        rgba(0,255,120,1),
         rgba(0,255,120,0)
       );
-      filter: blur(.6px);
       box-shadow:
-        0 0 18px rgba(0,255,120,.95),
-        0 0 40px rgba(0,255,120,.65);
-      mix-blend-mode: screen;
-      z-index:1;
-      animation: laserSweep .35s linear infinite;
+        0 0 18px rgba(0,255,120,1),
+        0 0 40px rgba(0,255,120,.7);
     }
 
-    /* halo laser (fumée) */
+    /* droite */
+    .laser.right{
+      right:-20px;
+      transform: rotate(-12deg);
+      background: linear-gradient(
+        to bottom,
+        rgba(255,40,40,0),
+        rgba(255,40,40,1),
+        rgba(255,40,40,0)
+      );
+      box-shadow:
+        0 0 18px rgba(255,40,40,1),
+        0 0 40px rgba(255,40,40,.7);
+    }
+
+    /* halo dans la fumée */
     .laser::after{
       content:"";
       position:absolute;
-      left:-60px;
-      width:120px;
+      left:-120px;
+      width:240px;
       height:100%;
       background: linear-gradient(
         to bottom,
-        rgba(0,255,120,.35),
-        rgba(0,255,120,0)
+        rgba(255,255,255,.35),
+        rgba(255,255,255,0)
       );
-      filter: blur(20px);
-      opacity:.75;
+      filter: blur(22px);
+      opacity:.45;
     }
 
-    @keyframes laserSweep{
-      0%   { transform: translateX(-320px) rotate(-30deg); opacity:.7; }
-      50%  { opacity:1; }
-      100% { transform: translateX(320px)  rotate(30deg); opacity:.8; }
+    @keyframes laserFlicker{
+      0%   { opacity:.7; }
+      100% { opacity:1; }
     }
 
     /* ================= FLASH PHOTO ================= */
@@ -194,7 +217,7 @@
       width:min(900px, 92vw);
       opacity:.35;
       mix-blend-mode: screen;
-      filter: saturate(1.25) contrast(1.2);
+      filter: saturate(1.3) contrast(1.2);
     }
 
     /* ================= TEXTE ================= */
@@ -218,7 +241,7 @@
     header h1{ margin:0; font-size:28px; }
     header p{ margin-top:12px; font-weight:600; }
 
-    /* ================= CONTENT ================= */
+    /* ================= CONTENU ================= */
     section{
       max-width:1100px;
       margin:auto;
@@ -249,10 +272,13 @@
 <header>
   <div class="smoke"></div>
 
-  <!-- laser -->
-  <div class="laser"></div>
+  <!-- lasers de chaque côté -->
+  <div class="lasers">
+    <div class="laser left"></div>
+    <div class="laser right"></div>
+  </div>
 
-  <!-- flash -->
+  <!-- flash photo -->
   <div class="flash" id="flashLayer"></div>
 
   <!-- lyres -->
@@ -260,7 +286,6 @@
     <div class="beam b1"></div>
     <div class="beam b2"></div>
     <div class="beam b3"></div>
-    <div class="beam b4"></div>
   </div>
 
   <!-- platines -->
@@ -300,9 +325,9 @@
   function loop(){
     setTimeout(()=>{
       triggerFlash();
-      if(Math.random()<0.3) setTimeout(triggerFlash,120);
+      if(Math.random()<0.35) setTimeout(triggerFlash,120);
       loop();
-    },1200 + Math.random()*2000);
+    },1200 + Math.random()*1800);
   }
   loop();
 </script>
