@@ -6,88 +6,140 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:#0f172a;
+      color:white;
     }
 
-    header {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #6366f1, #22d3ee);
-      color: #020617;
+    /* ================= HEADER / HERO ================= */
+    header{
+      padding:80px 20px;
+      text-align:center;
+      color:#020617;
+      position:relative;
+      overflow:hidden;
+
+      background:
+        radial-gradient(900px 420px at 20% 10%, rgba(99,102,241,.55), transparent 60%),
+        radial-gradient(700px 420px at 85% 20%, rgba(34,211,238,.45), transparent 60%),
+        radial-gradient(600px 380px at 50% 120%, rgba(0,0,0,.25), transparent 60%),
+        linear-gradient(135deg, #6366f1, #22d3ee);
     }
 
-    /* Nouveau : le nom "Valtrack, Son & Lumière" */
-    .brand {
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      font-size: 36px;
-      margin: 0 0 10px;
-      text-transform: none;
+    /* Effet lumière + grain */
+    header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 500px at 50% 0%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(900px 500px at 0% 100%, rgba(0,0,0,.18), transparent 60%),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.035) 0px,
+          rgba(255,255,255,.035) 1px,
+          transparent 2px,
+          transparent 4px
+        );
+      opacity:.55;
+      pointer-events:none;
     }
 
-    /* Titre principal */
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      font-weight: 800;
+    header > *{
+      position:relative;
+      z-index:1;
     }
 
-    header p {
-      margin: 10px 0 0;
-      font-weight: 600;
+    /* Bloc texte central */
+    .heroBox{
+      display:inline-block;
+      padding:22px 30px;
+      border-radius:18px;
+      background:rgba(2,6,23,.14);
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 20px 60px rgba(0,0,0,.25);
     }
 
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
+    .brand{
+      font-size:38px;
+      font-weight:900;
+      letter-spacing:.6px;
+      margin-bottom:10px;
     }
 
-    h2 {
-      margin-bottom: 12px;
+    header h1{
+      font-size:28px;
+      margin:0;
+      font-weight:800;
     }
 
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    header p{
+      margin-top:10px;
+      font-weight:600;
     }
 
-    .card {
-      background: #020617;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    /* ================= SECTIONS ================= */
+    section{
+      max-width:1000px;
+      margin:auto;
+      padding:50px 20px;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #94a3b8;
-      border-top: 1px solid #1e293b;
+    h2{
+      margin-bottom:16px;
     }
 
-    a {
-      color: #22d3ee;
-      text-decoration: none;
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:22px;
     }
-    a:hover { text-decoration: underline; }
+
+    .card{
+      background:#020617;
+      padding:22px;
+      border-radius:14px;
+      box-shadow:0 14px 40px rgba(0,0,0,.3);
+    }
+
+    .card h3{
+      margin-top:0;
+    }
+
+    /* ================= CONTACT ================= */
+    .contact p{
+      line-height:1.8;
+    }
+
+    a{
+      color:#22d3ee;
+      text-decoration:none;
+    }
+    a:hover{
+      text-decoration:underline;
+    }
+
+    /* ================= FOOTER ================= */
+    footer{
+      text-align:center;
+      padding:20px;
+      border-top:1px solid #1e293b;
+      color:#94a3b8;
+    }
   </style>
 </head>
 
 <body>
 
 <header>
-  <!-- AJOUT : Valtrack, Son & Lumière au-dessus -->
-  <div class="brand">Valtrack, Son &amp; Lumière</div>
-
-  <!-- Ton titre existant -->
-  <h1>DJ Animateur &amp; Photographe</h1>
-  <p>Mariages • Anniversaires • Événements privés</p>
+  <div class="heroBox">
+    <div class="brand">Valtrack, Son &amp; Lumière</div>
+    <h1>DJ Animateur &amp; Photographe</h1>
+    <p>Mariages • Anniversaires • Événements privés</p>
+  </div>
 </header>
 
 <section>
@@ -95,27 +147,36 @@
   <div class="services">
     <div class="card">
       <h3>🎧 DJ &amp; Animation</h3>
-      <p>Ambiance sur mesure, playlist personnalisée, micro et animations.</p>
+      <p>
+        Ambiance sur mesure, playlist personnalisée,
+        micro, animations et gestion des temps forts.
+      </p>
     </div>
 
     <div class="card">
       <h3>📸 Photographie</h3>
-      <p>Reportage événementiel, photos naturelles et retouches professionnelles.</p>
+      <p>
+        Reportage événementiel, photos naturelles,
+        retouches professionnelles et souvenirs durables.
+      </p>
     </div>
 
     <div class="card">
       <h3>✨ Packs DJ + Photo</h3>
-      <p>Un seul prestataire pour une organisation simple et efficace.</p>
+      <p>
+        Un seul prestataire pour une organisation
+        simple, fluide et efficace.
+      </p>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<section class="contact" id="contact">
   <h2>Contact</h2>
   <p>
     📞 Téléphone : <strong>À compléter</strong><br>
     📍 Zone : <strong>À compléter</strong><br>
-    📷 Instagram : <a href="#" target="_blank" rel="noreferrer">Lien Instagram</a>
+    📷 Instagram : <a href="#" target="_blank">Lien Instagram</a>
   </p>
 </section>
 
@@ -125,4 +186,3 @@
 
 </body>
 </html>
-
