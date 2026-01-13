@@ -1,292 +1,210 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Valtrack, Son & Lumière – DJ Animateur & Photographe</title>
+<meta charset="UTF-8">
+<title>Valtrack, Son & Lumière – DJ Animateur & Photographe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:#0f172a;
-      color:white;
-    }
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0b1220;
+  color:#fff;
+}
 
-    header{
-      min-height:560px;
-      padding:90px 20px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-      color:#eaf2ff;
-      background:
-        linear-gradient(135deg, rgba(8,12,25,.92), rgba(8,12,25,.45)),
-        url("images/hero.jpg");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-    }
+/* ================= HERO ================= */
+header{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(5,10,25,.85),rgba(5,10,25,.4)),
+    url("images/hero.jpg");
+  background-size:cover;
+  background-position:center;
+}
 
-    header::before{
-      content:"";
-      position:absolute;
-      inset:-40px;
-      background:
-        radial-gradient(900px 450px at 15% 10%, rgba(50,180,255,.20), transparent 60%),
-        radial-gradient(900px 450px at 85% 10%, rgba(170,80,255,.18), transparent 60%),
-        radial-gradient(900px 450px at 50% 120%, rgba(255,255,255,.08), transparent 55%);
-      pointer-events:none;
-      z-index:0;
-    }
+/* ================= FUMÉE ================= */
+.smoke{
+  position:absolute;
+  inset:-40%;
+  z-index:1;
+  filter:blur(40px);
+  opacity:.55;
+  pointer-events:none;
+}
+.smoke::before,
+.smoke::after{
+  content:"";
+  position:absolute;
+  width:120%;
+  height:120%;
+  background:
+    radial-gradient(circle at 30% 80%,rgba(255,255,255,.35),transparent 55%),
+    radial-gradient(circle at 60% 85%,rgba(255,255,255,.25),transparent 60%),
+    radial-gradient(circle at 80% 70%,rgba(255,255,255,.30),transparent 55%);
+  animation:smokeMove 22s linear infinite;
+}
+.smoke::after{
+  animation-duration:32s;
+  opacity:.6;
+}
+@keyframes smokeMove{
+  0%{transform:translateY(120px) translateX(-80px) scale(1)}
+  50%{transform:translateY(-40px) translateX(40px) scale(1.15)}
+  100%{transform:translateY(-200px) translateX(120px) scale(1.3)}
+}
 
-    /* ================= FUMÉE ================= */
-    .smoke{
-      position:absolute;
-      inset:-35%;
-      z-index:1;
-      pointer-events:none;
-      filter: blur(34px);
-      opacity:.55;
-      mix-blend-mode: screen;
-    }
-    .smoke::before,
-    .smoke::after{
-      content:"";
-      position:absolute;
-      width:120%;
-      height:120%;
-      background:
-        radial-gradient(circle at 28% 78%, rgba(255,255,255,.30), transparent 55%),
-        radial-gradient(circle at 55% 84%, rgba(255,255,255,.22), transparent 60%),
-        radial-gradient(circle at 82% 70%, rgba(255,255,255,.26), transparent 55%),
-        radial-gradient(circle at 40% 62%, rgba(255,255,255,.18), transparent 60%);
-      animation: smokeMove 20s linear infinite;
-    }
-    .smoke::after{
-      animation-duration: 30s;
-      opacity:.65;
-    }
-    @keyframes smokeMove{
-      0%   { transform: translateY(120px) translateX(-80px) scale(1); }
-      50%  { transform: translateY(-40px)  translateX(30px)  scale(1.15); }
-      100% { transform: translateY(-180px) translateX(120px) scale(1.3); }
-    }
+/* ================= LYRES RGB ================= */
+.beams{
+  position:absolute;
+  inset:-200px;
+  z-index:2;
+  pointer-events:none;
+  mix-blend-mode:screen;
+  filter:saturate(2) contrast(1.3);
+}
+.beam{
+  position:absolute;
+  top:-150px;
+  width:520px;
+  height:1200px;
+  transform-origin:top center;
+}
+.beam::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  clip-path:polygon(50% 0%,0% 100%,100% 100%);
+  background:linear-gradient(
+    to bottom,
+    rgba(var(--r),var(--g),var(--b),0),
+    rgba(var(--r),var(--g),var(--b),.95),
+    rgba(var(--r),var(--g),var(--b),.35),
+    rgba(var(--r),var(--g),var(--b),0)
+  );
+}
+.b1{left:5%;animation:pan1 .8s alternate infinite,rgb1 2s linear infinite}
+.b2{left:30%;animation:pan2 1.1s alternate infinite,rgb2 2.6s linear infinite}
+.b3{left:55%;animation:pan3 .9s alternate infinite,rgb3 3.2s linear infinite}
+.b4{left:80%;animation:pan4 1.3s alternate infinite,rgb4 3.8s linear infinite}
 
-    /* ================= FLASH PHOTO ================= */
-    .flash{
-      position:absolute;
-      inset:0;
-      z-index:6;
-      pointer-events:none;
-      opacity:0;
-      background:
-        radial-gradient(340px 240px at var(--x,50%) var(--y,30%),
-          rgba(255,255,255,.95),
-          rgba(255,255,255,0) 65%);
-      mix-blend-mode: screen;
-    }
-    .flash.active{ animation: flashPop 180ms ease-out forwards; }
-    @keyframes flashPop{
-      0%{opacity:0;}
-      20%{opacity:1;}
-      100%{opacity:0;}
-    }
+@keyframes pan1{from{transform:rotate(-35deg)}to{transform:rotate(25deg)}}
+@keyframes pan2{from{transform:rotate(25deg)}to{transform:rotate(-30deg)}}
+@keyframes pan3{from{transform:rotate(-20deg)}to{transform:rotate(35deg)}}
+@keyframes pan4{from{transform:rotate(30deg)}to{transform:rotate(-25deg)}}
 
-    /* ================= LASERS ================= */
-    .lasers{
-      position:absolute;
-      inset:0;
-      z-index:4;
-      pointer-events:none;
-      mix-blend-mode: screen;
-      filter: saturate(1.9) contrast(1.2);
-    }
-    .laser{
-      position:absolute;
-      top:-60px;
-      width:10px;
-      height:140%;
-      transform-origin: top center;
-      filter: blur(.6px);
-      opacity:.95;
-      animation: laserMove .55s ease-in-out infinite alternate,
-                 laserFlicker .22s linear infinite;
-    }
-    .laser::after{
-      content:"";
-      position:absolute;
-      left:-160px;
-      width:320px;
-      height:100%;
-      background: linear-gradient(
-        to bottom,
-        rgba(var(--lr), var(--lg), var(--lb), .40),
-        rgba(var(--lr), var(--lg), var(--lb), 0)
-      );
-      filter: blur(28px);
-      opacity:.55;
-    }
-    .laser.left{
-      left:-30px;
-      --lr:0; --lg:255; --lb:140;
-      background: linear-gradient(to bottom, rgba(0,255,140,0), rgba(0,255,140,1), rgba(0,255,140,0));
-      box-shadow: 0 0 18px rgba(0,255,140,1), 0 0 55px rgba(0,255,140,.85);
-      animation-delay: 0s, .10s;
-    }
-    .laser.right{
-      right:-30px;
-      --lr:255; --lg:40; --lb:40;
-      background: linear-gradient(to bottom, rgba(255,40,40,0), rgba(255,40,40,1), rgba(255,40,40,0));
-      box-shadow: 0 0 18px rgba(255,40,40,1), 0 0 55px rgba(255,40,40,.85);
-      animation-delay: .12s, .05s;
-    }
-    @keyframes laserMove{
-      0%   { transform: rotate(-42deg); }
-      100% { transform: rotate(42deg); }
-    }
-    @keyframes laserFlicker{
-      0%   { opacity:.55; }
-      100% { opacity:1; }
-    }
+@keyframes rgb1{0%{--r:255;--g:0;--b:0}50%{--r:0;--g:255;--b:0}100%{--r:255;--g:0;--b:0}}
+@keyframes rgb2{0%{--r:0;--g:255;--b:255}50%{--r:255;--g:0;--b:255}100%{--r:0;--g:255;--b:255}}
+@keyframes rgb3{0%{--r:255;--g:255;--b:0}50%{--r:0;--g:0;--b:255}100%{--r:255;--g:255;--b:0}}
+@keyframes rgb4{0%{--r:255;--g:0;--b:180}50%{--r:0;--g:255;--b:180}100%{--r:255;--g:0;--b:180}}
 
-    /* ================= LYRES RGB ================= */
-    .beams{
-      position:absolute;
-      inset:-140px;
-      z-index:3;
-      pointer-events:none;
-      mix-blend-mode: screen;
-      filter: saturate(1.9) contrast(1.25);
-    }
-    .beam{
-      position:absolute;
-      top:-150px;
-      width:560px;
-      height:1050px;
-      transform-origin: top center;
-    }
-    .beam::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      background: linear-gradient(
-        to bottom,
-        rgba(var(--r), var(--g), var(--b), 0) 0%,
-        rgba(var(--r), var(--g), var(--b), .95) 14%,
-        rgba(var(--r), var(--g), var(--b), .35) 55%,
-        rgba(var(--r), var(--g), var(--b), 0) 100%
-      );
-      filter: blur(.7px);
-    }
-    .beam::after{
-      content:"";
-      position:absolute;
-      inset:-50px -100px;
-      clip-path: polygon(50% 0%, 8% 100%, 92% 100%);
-      background: linear-gradient(
-        to bottom,
-        rgba(var(--r), var(--g), var(--b), .45),
-        rgba(var(--r), var(--g), var(--b), 0)
-      );
-      filter: blur(22px);
-    }
+/* ================= LASERS ================= */
+.lasers{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+.laser{
+  position:absolute;
+  top:-50px;
+  width:6px;
+  height:130%;
+  filter:blur(.4px);
+  animation:laserMove .6s alternate infinite;
+}
+.laser.left{
+  left:-20px;
+  background:linear-gradient(to bottom,rgba(0,255,150,0),rgba(0,255,150,1),rgba(0,255,150,0));
+}
+.laser.right{
+  right:-20px;
+  background:linear-gradient(to bottom,rgba(255,40,40,0),rgba(255,40,40,1),rgba(255,40,40,0));
+  animation-delay:.2s;
+}
+@keyframes laserMove{
+  from{transform:rotate(-40deg)}
+  to{transform:rotate(40deg)}
+}
 
-    .b1{ left:10%; animation: panA .85s ease-in-out infinite alternate, rgbA 2.2s linear infinite, pulse .45s linear infinite; }
-    .b2{ left:30%; animation: panB 1.15s ease-in-out infinite alternate, rgbB 2.8s linear infinite, pulse .55s linear infinite; }
-    .b3{ left:50%; animation: panC .95s ease-in-out infinite alternate, rgbC 3.4s linear infinite, pulse .48s linear infinite; }
-    .b4{ left:70%; animation: panD 1.35s ease-in-out infinite alternate, rgbD 4.0s linear infinite, pulse .60s linear infinite; }
+/* ================= TEXTE ================= */
+.heroBox{
+  position:relative;
+  z-index:5;
+  margin:120px auto 0;
+  max-width:640px;
+  padding:36px;
+  text-align:center;
+  background:rgba(0,0,0,.55);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(6px);
+}
+.brand{font-size:42px;font-weight:900;margin-bottom:12px}
+.heroBox h1{margin:0;font-size:28px}
+.heroBox p{margin-top:12px;font-weight:600}
 
-    @keyframes panA{ 0%{transform:rotate(-30deg);}100%{transform:rotate(24deg);} }
-    @keyframes panB{ 0%{transform:rotate(22deg);}100%{transform:rotate(-28deg);} }
-    @keyframes panC{ 0%{transform:rotate(-18deg);}100%{transform:rotate(34deg);} }
-    @keyframes panD{ 0%{transform:rotate(30deg);}100%{transform:rotate(-22deg);} }
+/* ================= FOULE ================= */
+.crowd{
+  position:absolute;
+  bottom:-10px;
+  width:100%;
+  height:240px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:14px;
+  z-index:4;
+}
+.person{
+  width:70px;
+  height:200px;
+  background:#000;
+  border-radius:35px 35px 25px 25px;
+  position:relative;
+  animation:bounce .8s alternate infinite;
+}
+.person::before{
+  content:"";
+  position:absolute;
+  top:-32px;
+  left:50%;
+  transform:translateX(-50%);
+  width:38px;
+  height:38px;
+  background:#000;
+  border-radius:50%;
+}
+.person::after{
+  content:"";
+  position:absolute;
+  top:26px;
+  left:50%;
+  width:110px;
+  height:90px;
+  transform:translateX(-50%);
+  background:
+    linear-gradient(#000,#000) left 10px top /16px 90px no-repeat,
+    linear-gradient(#000,#000) right 10px top /16px 90px no-repeat;
+}
+.person:nth-child(odd){animation-duration:1s}
+@keyframes bounce{
+  from{transform:translateY(0)}
+  to{transform:translateY(-18px)}
+}
 
-    @keyframes rgbA{ 0%{--r:255;--g:0;--b:0;}33%{--r:0;--g:255;--b:0;}66%{--r:0;--g:0;--b:255;}100%{--r:255;--g:0;--b:0;} }
-    @keyframes rgbB{ 0%{--r:0;--g:255;--b:255;}50%{--r:255;--g:0;--b:255;}100%{--r:0;--g:255;--b:255;} }
-    @keyframes rgbC{ 0%{--r:255;--g:255;--b:0;}50%{--r:0;--g:0;--b:255;}100%{--r:255;--g:255;--b:0;} }
-    @keyframes rgbD{ 0%{--r:255;--g:0;--b:128;}50%{--r:0;--g:255;--b:128;}100%{--r:255;--g:0;--b:128;} }
-
-    @keyframes pulse{ 0%,100%{opacity:.7;}50%{opacity:1;} }
-
-    /* ================= FOULE QUI DANSE (MEILLEUR RENDU) ================= */
-    .crowd{
-      position:absolute;
-      left:0; right:0;
-      bottom:-8px;
-      height:260px;
-      z-index:5;
-      pointer-events:none;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      gap:14px;
-      padding:0 18px;
-      opacity:.98;
-      filter: drop-shadow(0 22px 40px rgba(0,0,0,.55));
-    }
-
-    /* silhouette base */
-    .person{
-      width:70px;
-      height:220px;
-      transform-origin: 50% 100%;
-      animation: crowdBounce .9s ease-in-out infinite alternate;
-      position:relative;
-      background: none;
-    }
-
-    /* contour RGB léger (reflet des lights) */
-    .person svg{
-      width:100%;
-      height:100%;
-      display:block;
-      filter:
-        drop-shadow(0 0 14px rgba(255,0,180,.10))
-        drop-shadow(0 0 18px rgba(0,220,255,.10))
-        drop-shadow(0 0 18px rgba(120,255,140,.08));
-    }
-
-    /* variations (désynchro) */
-    .person:nth-child(2){ animation-duration:1.05s; transform: scale(.95); }
-    .person:nth-child(3){ animation-duration:0.78s; transform: scale(1.02); }
-    .person:nth-child(4){ animation-duration:1.22s; transform: scale(.92); }
-    .person:nth-child(5){ animation-duration:0.82s; transform: scale(1.06); }
-    .person:nth-child(6){ animation-duration:1.12s; transform: scale(.90); }
-    .person:nth-child(7){ animation-duration:0.74s; transform: scale(1.00); }
-
-    @keyframes crowdBounce{
-      0%   { transform: translateY(0) rotate(-1deg); }
-      100% { transform: translateY(-16px) rotate(1deg); }
-    }
-
-    /* ================= TEXTE ================= */
-    .heroBox{
-      position:relative;
-      z-index:7;
-      display:inline-block;
-      padding:30px 38px;
-      border-radius:22px;
-      background:rgba(0,0,0,.55);
-      backdrop-filter: blur(6px);
-      border:1px solid rgba(255,255,255,.2);
-      box-shadow:0 30px 90px rgba(0,0,0,.6);
-      margin-top: 30px;
-    }
-    .brand{ font-size:42px; font-weight:900; margin-bottom:12px; }
-    header h1{ margin:0; font-size:28px; }
-    header p{ margin-top:12px; font-weight:600; opacity:.95; }
-
-    footer{
-      text-align:center;
-      padding:24px;
-      border-top:1px solid #1e293b;
-      color:#94a3b8;
-      background:#0f172a;
-    }
-  </style>
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  color:#94a3b8;
+  background:#0b1220;
+}
+</style>
 </head>
 
 <body>
@@ -306,90 +224,23 @@
     <div class="laser right"></div>
   </div>
 
-  <div class="flash" id="flashLayer"></div>
-
-  <!-- FOULE (silhouettes différentes) -->
-  <div class="crowd" aria-hidden="true">
-    <!-- Chaque SVG est une silhouette différente (bras levés etc.) -->
-    <div class="person">
-      <svg viewBox="0 0 120 260">
-        <path fill="#000" d="M60 26a18 18 0 1 1 0 36 18 18 0 0 1 0-36ZM18 98c8-22 22-34 42-34s34 12 42 34l-10 8-14-22-8 26 10 42c3 12-4 22-16 22s-19-10-16-22l10-42-8-26-14 22Z"/>
-        <path fill="#000" d="M16 92l22-30 10 8-22 30ZM104 92 82 62l-10 8 22 30Z"/>
-      </svg>
-    </div>
-
-    <div class="person">
-      <svg viewBox="0 0 120 260">
-        <path fill="#000" d="M62 28a17 17 0 1 1-34 0 17 17 0 0 1 34 0ZM26 100c10-24 26-34 44-34s34 10 44 34l-8 10-18-22-8 28 12 46c3 12-4 22-16 22s-19-10-16-22l12-46-8-28-18 22Z"/>
-        <path fill="#000" d="M6 114c18-6 30-16 36-32l12 6c-10 26-28 40-52 44ZM114 114c-18-6-30-16-36-32l-12 6c10 26 28 40 52 44Z"/>
-      </svg>
-    </div>
-
-    <div class="person">
-      <svg viewBox="0 0 120 260">
-        <path fill="#000" d="M58 26a18 18 0 1 1 0 36 18 18 0 0 1 0-36ZM22 104c8-20 22-32 40-32s32 12 40 32l-10 10-12-20-10 26 10 48c2 12-5 22-16 22s-17-10-15-22l10-48-10-26-12 20Z"/>
-        <path fill="#000" d="M20 86c0-18 10-28 24-34l6 12c-10 4-14 10-14 22ZM100 86c0-18-10-28-24-34l-6 12c10 4 14 10 14 22Z"/>
-      </svg>
-    </div>
-
-    <div class="person">
-      <svg viewBox="0 0 120 260">
-        <path fill="#000" d="M60 28a17 17 0 1 1 0 34 17 17 0 0 1 0-34ZM24 106c10-26 26-36 36-36s26 10 36 36l-10 8-10-18-8 28 10 50c2 12-5 22-16 22s-18-10-16-22l10-50-8-28-10 18Z"/>
-        <path fill="#000" d="M14 130c22 0 34-12 40-26l12 6c-10 28-32 42-62 38ZM106 130c-22 0-34-12-40-26l-12 6c10 28 32 42 62 38Z"/>
-      </svg>
-    </div>
-
-    <div class="person">
-      <svg viewBox="0 0 120 260">
-        <path fill="#000" d="M62 26a18 18 0 1 1-36 0 18 18 0 0 1 36 0ZM30 102c10-22 22-30 40-30s30 8 40 30l-10 10-14-18-8 24 12 52c3 12-4 22-16 22s-18-10-16-22l12-52-8-24-14 18Z"/>
-        <path fill="#000" d="M10 92 34 60l10 8-24 32ZM110 92 86 60l-10 8 24 32Z"/>
-      </svg>
-    </div>
-
-    <div class="person">
-      <svg viewBox="0 0 120 260">
-        <path fill="#000" d="M60 28a17 17 0 1 1 0 34 17 17 0 0 1 0-34ZM22 108c8-22 22-34 38-34s30 12 38 34l-8 10-14-18-8 26 10 50c2 12-5 22-16 22s-17-10-15-22l10-50-8-26-14 18Z"/>
-        <path fill="#000" d="M8 122c20-4 34-14 40-30l12 6c-10 26-28 40-56 44ZM112 122c-20-4-34-14-40-30l-12 6c10 26 28 40 56 44Z"/>
-      </svg>
-    </div>
-
-    <div class="person">
-      <svg viewBox="0 0 120 260">
-        <path fill="#000" d="M58 26a18 18 0 1 1 0 36 18 18 0 0 1 0-36ZM20 104c8-22 22-34 40-34s32 12 40 34l-10 8-12-20-10 26 10 48c2 12-5 22-16 22s-17-10-15-22l10-48-10-26-12 20Z"/>
-        <path fill="#000" d="M44 64c-6-16-2-30 14-42l8 10c-10 8-12 16-8 30ZM76 64c6-16 2-30-14-42l-8 10c10 8 12 16 8 30Z"/>
-      </svg>
-    </div>
-  </div>
-
   <div class="heroBox">
     <div class="brand">Valtrack, Son &amp; Lumière</div>
     <h1>DJ Animateur &amp; Photographe</h1>
     <p>Mariages • Anniversaires • Événements privés</p>
   </div>
+
+  <div class="crowd">
+    <div class="person"></div>
+    <div class="person"></div>
+    <div class="person"></div>
+    <div class="person"></div>
+    <div class="person"></div>
+    <div class="person"></div>
+  </div>
 </header>
 
 <footer>© 2026 – Valtrack, Son &amp; Lumière</footer>
-
-<script>
-  // Flashs photo aléatoires
-  const flash = document.getElementById('flashLayer');
-  function triggerFlash(){
-    const x = Math.floor(20 + Math.random()*60) + "%";
-    const y = Math.floor(10 + Math.random()*45) + "%";
-    flash.style.setProperty('--x', x);
-    flash.style.setProperty('--y', y);
-    flash.classList.remove('active');
-    void flash.offsetWidth;
-    flash.classList.add('active');
-  }
-  (function loop(){
-    setTimeout(()=>{
-      triggerFlash();
-      if(Math.random() < 0.35) setTimeout(triggerFlash, 120);
-      loop();
-    }, 1100 + Math.random()*1700);
-  })();
-</script>
 
 </body>
 </html>
