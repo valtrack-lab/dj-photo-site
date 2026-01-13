@@ -131,3 +131,131 @@
     }
     @keyframes sparkle{
       0%,70% { transform:scale(.35); opacity:.1; }
+      75%    { transform:scale(1.1); opacity:1; }
+      100%   { transform:scale(.4); opacity:.05; }
+    }
+
+    /* ================= SECTIONS ================= */
+    section{
+      max-width:1100px;
+      margin:auto;
+      padding:60px 20px;
+    }
+
+    h2{ margin-bottom:20px; font-size:26px; }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+      gap:26px;
+    }
+
+    .card{
+      background:#020617;
+      padding:26px;
+      border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .card h3{ margin-top:0; }
+
+    a{ color:#22d3ee; text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    footer{
+      text-align:center;
+      padding:24px;
+      border-top:1px solid #1e293b;
+      color:#94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <!-- Flash overlay -->
+  <div class="flash" id="flashLayer"></div>
+
+  <!-- Platines (optionnel) : ajoute images/decks.png si tu veux -->
+  <!-- Si tu n’as pas d’image, tu peux supprimer cette ligne -->
+  <img class="decks" src="images/decks.png" alt="" onerror="this.style.display='none'">
+
+  <div class="heroBox">
+    <div class="brand">
+      Valtrack, Son &amp; Lumière <span class="spark" aria-hidden="true"></span>
+    </div>
+    <h1>DJ Animateur &amp; Photographe</h1>
+    <p>Mariages • Anniversaires • Événements privés</p>
+  </div>
+</header>
+
+<section>
+  <h2>Mes prestations</h2>
+  <div class="services">
+    <div class="card">
+      <h3>🎧 DJ &amp; Animation</h3>
+      <p>Ambiance sur mesure, playlist personnalisée, micro, animations et gestion des temps forts.</p>
+    </div>
+    <div class="card">
+      <h3>📸 Photographie</h3>
+      <p>Reportage événementiel, photos naturelles, retouches professionnelles et souvenirs durables.</p>
+    </div>
+    <div class="card">
+      <h3>✨ Packs DJ + Photo</h3>
+      <p>Un seul prestataire pour une organisation simple, fluide et efficace.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Contact</h2>
+  <p>
+    📞 Téléphone : <strong>À compléter</strong><br>
+    📍 Zone : <strong>À compléter</strong><br>
+    📷 Instagram : <a href="#">Lien Instagram</a>
+  </p>
+</section>
+
+<footer>
+  © 2026 – Valtrack, Son &amp; Lumière
+</footer>
+
+<script>
+  // Flashs aléatoires (style flash appareil photo)
+  const flash = document.getElementById('flashLayer');
+
+  function triggerFlash(){
+    // positions aléatoires du flash
+    const x = Math.floor(10 + Math.random()*80) + "%";
+    const y = Math.floor(10 + Math.random()*55) + "%";
+    const x2 = Math.floor(10 + Math.random()*80) + "%";
+    const y2 = Math.floor(10 + Math.random()*55) + "%";
+
+    flash.style.setProperty('--x', x);
+    flash.style.setProperty('--y', y);
+    flash.style.setProperty('--x2', x2);
+    flash.style.setProperty('--y2', y2);
+
+    flash.classList.remove('active');
+    // relance animation
+    void flash.offsetWidth;
+    flash.classList.add('active');
+  }
+
+  // Fréquence : 1 flash toutes les 2 à 6 secondes
+  function schedule(){
+    const delay = 2000 + Math.random()*4000;
+    setTimeout(() => {
+      triggerFlash();
+      // parfois double flash
+      if (Math.random() < 0.25) setTimeout(triggerFlash, 180);
+      schedule();
+    }, delay);
+  }
+  schedule();
+</script>
+
+</body>
+</html>
+
