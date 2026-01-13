@@ -1,282 +1,192 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Valtrack, Son & Lumière – DJ Animateur & Photographe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valtrack, Son & Lumière</title>
 
-  <style>
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:#0b1220;
-      color:#fff;
-    }
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0b1220;
+  color:#fff;
+  overflow-x:hidden;
+}
 
-    /* ================= HERO ================= */
-    header{
-      position:relative;
-      min-height:100vh;
-      overflow:hidden;
-      text-align:center;
-      padding:90px 20px 0;
-      background:
-        linear-gradient(135deg, rgba(5,10,25,.85), rgba(5,10,25,.35)),
-        url("images/hero.jpg");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-    }
+/* ================= HERO ================= */
+header{
+  position:relative;
+  height:100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),
+    url("images/hero.jpg") center/cover no-repeat;
+  overflow:hidden;
+}
 
-    header::before{
-      content:"";
-      position:absolute;
-      inset:-40px;
-      z-index:0;
-      pointer-events:none;
-      background:
-        radial-gradient(900px 450px at 15% 10%, rgba(50,180,255,.18), transparent 60%),
-        radial-gradient(900px 450px at 85% 10%, rgba(170,80,255,.16), transparent 60%),
-        radial-gradient(900px 450px at 50% 120%, rgba(255,255,255,.08), transparent 55%);
-    }
+/* ================= FUMÉE ================= */
+.smoke{
+  position:absolute;
+  inset:-40%;
+  background:
+    radial-gradient(circle at 30% 80%,rgba(255,255,255,.25),transparent 60%),
+    radial-gradient(circle at 70% 85%,rgba(255,255,255,.2),transparent 60%);
+  filter:blur(50px);
+  animation:smoke 25s linear infinite;
+  pointer-events:none;
+  z-index:2;
+}
+@keyframes smoke{
+  from{transform:translateY(100px)}
+  to{transform:translateY(-200px)}
+}
 
-    /* ================= FUMÉE ================= */
-    .smoke{
-      position:absolute;
-      inset:-40%;
-      z-index:1;
-      filter: blur(40px);
-      opacity:.55;
-      pointer-events:none;
-      mix-blend-mode: screen;
-    }
-    .smoke::before,
-    .smoke::after{
-      content:"";
-      position:absolute;
-      width:120%;
-      height:120%;
-      background:
-        radial-gradient(circle at 30% 80%, rgba(255,255,255,.32), transparent 55%),
-        radial-gradient(circle at 60% 85%, rgba(255,255,255,.22), transparent 60%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,.26), transparent 55%),
-        radial-gradient(circle at 40% 62%, rgba(255,255,255,.18), transparent 60%);
-      animation: smokeMove 22s linear infinite;
-    }
-    .smoke::after{
-      animation-duration: 32s;
-      opacity:.6;
-    }
-    @keyframes smokeMove{
-      0%{ transform:translateY(120px) translateX(-80px) scale(1); }
-      50%{ transform:translateY(-40px) translateX(40px) scale(1.15); }
-      100%{ transform:translateY(-200px) translateX(120px) scale(1.3); }
-    }
+/* ================= LYRES RGB ================= */
+.beams{
+  position:absolute;
+  inset:-300px;
+  pointer-events:none;
+  z-index:3;
+  mix-blend-mode:screen;
+}
+.beam{
+  position:absolute;
+  width:500px;
+  height:1300px;
+  top:-200px;
+  transform-origin:top center;
+  animation:pulse .6s infinite;
+}
+.beam::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  clip-path:polygon(50% 0%,0% 100%,100% 100%);
+  background:linear-gradient(
+    to bottom,
+    rgba(var(--r),var(--g),var(--b),0),
+    rgba(var(--r),var(--g),var(--b),.9),
+    rgba(var(--r),var(--g),var(--b),0)
+  );
+}
+@keyframes pulse{
+  0%,100%{opacity:.6}
+  50%{opacity:1}
+}
 
-    /* ================= LYRES RGB ================= */
-    .beams{
-      position:absolute;
-      inset:-220px;
-      z-index:2;
-      pointer-events:none;
-      mix-blend-mode:screen;
-      filter:saturate(2) contrast(1.25);
-    }
-    .beam{
-      position:absolute;
-      top:-160px;
-      width:540px;
-      height:1300px;
-      transform-origin:top center;
-      opacity:.95;
-      animation: pulse .55s linear infinite;
-    }
-    .beam::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      clip-path:polygon(50% 0%,0% 100%,100% 100%);
-      background:linear-gradient(
-        to bottom,
-        rgba(var(--r),var(--g),var(--b),0) 0%,
-        rgba(var(--r),var(--g),var(--b),.95) 16%,
-        rgba(var(--r),var(--g),var(--b),.35) 55%,
-        rgba(var(--r),var(--g),var(--b),0) 100%
-      );
-      filter: blur(.6px);
-    }
-    @keyframes pulse{ 0%,100%{opacity:.75;} 50%{opacity:1;} }
+.b1{left:5%;animation:pan1 .8s alternate infinite,rgb1 2s linear infinite}
+.b2{left:30%;animation:pan2 1.1s alternate infinite,rgb2 3s linear infinite}
+.b3{left:55%;animation:pan3 .9s alternate infinite,rgb3 2.6s linear infinite}
+.b4{left:80%;animation:pan4 1.3s alternate infinite,rgb4 3.4s linear infinite}
 
-    .b1{ left:2%;  animation: pan1 .75s ease-in-out infinite alternate, rgb1 2.0s linear infinite, pulse .45s linear infinite; }
-    .b2{ left:26%; animation: pan2 1.05s ease-in-out infinite alternate, rgb2 2.7s linear infinite, pulse .55s linear infinite; }
-    .b3{ left:50%; animation: pan3 .9s  ease-in-out infinite alternate, rgb3 3.2s linear infinite, pulse .48s linear infinite; }
-    .b4{ left:74%; animation: pan4 1.25s ease-in-out infinite alternate, rgb4 3.9s linear infinite, pulse .62s linear infinite; }
+@keyframes pan1{from{transform:rotate(-35deg)}to{transform:rotate(25deg)}}
+@keyframes pan2{from{transform:rotate(30deg)}to{transform:rotate(-30deg)}}
+@keyframes pan3{from{transform:rotate(-20deg)}to{transform:rotate(35deg)}}
+@keyframes pan4{from{transform:rotate(40deg)}to{transform:rotate(-25deg)}}
 
-    @keyframes pan1{ from{transform:rotate(-40deg)} to{transform:rotate(22deg)} }
-    @keyframes pan2{ from{transform:rotate(24deg)}  to{transform:rotate(-34deg)} }
-    @keyframes pan3{ from{transform:rotate(-20deg)} to{transform:rotate(36deg)} }
-    @keyframes pan4{ from{transform:rotate(34deg)}  to{transform:rotate(-24deg)} }
+@keyframes rgb1{0%{--r:255;--g:0;--b:0}50%{--r:0;--g:255;--b:0}100%{--r:0;--g:0;--b:255}}
+@keyframes rgb2{0%{--r:0;--g:255;--b:255}50%{--r:255;--g:0;--b:255}100%{--r:0;--g:255;--b:255}}
+@keyframes rgb3{0%{--r:255;--g:255;--b:0}50%{--r:0;--g:0;--b:255}100%{--r:255;--g:255;--b:0}}
+@keyframes rgb4{0%{--r:255;--g:0;--b:180}50%{--r:0;--g:255;--b:180}100%{--r:255;--g:0;--b:180}}
 
-    @keyframes rgb1{ 0%{--r:255;--g:0;--b:0;} 33%{--r:0;--g:255;--b:0;} 66%{--r:0;--g:0;--b:255;} 100%{--r:255;--g:0;--b:0;} }
-    @keyframes rgb2{ 0%{--r:0;--g:255;--b:255;} 50%{--r:255;--g:0;--b:255;} 100%{--r:0;--g:255;--b:255;} }
-    @keyframes rgb3{ 0%{--r:255;--g:255;--b:0;} 50%{--r:0;--g:0;--b:255;} 100%{--r:255;--g:255;--b:0;} }
-    @keyframes rgb4{ 0%{--r:255;--g:0;--b:180;} 50%{--r:0;--g:255;--b:180;} 100%{--r:255;--g:0;--b:180;} }
+/* ================= LASERS ================= */
+.lasers{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:4;
+}
+.laser{
+  position:absolute;
+  top:-100px;
+  width:6px;
+  height:140%;
+  filter:blur(.5px);
+  transform-origin:top center;
+  animation:laser .5s alternate infinite;
+}
+.left{
+  left:-20px;
+  background:linear-gradient(to bottom,transparent,#00ff99,transparent);
+  box-shadow:0 0 20px #00ff99;
+}
+.right{
+  right:-20px;
+  background:linear-gradient(to bottom,transparent,#ff3333,transparent);
+  box-shadow:0 0 20px #ff3333;
+  animation-delay:.15s;
+}
+@keyframes laser{
+  from{transform:rotate(-40deg)}
+  to{transform:rotate(40deg)}
+}
 
-    /* ================= LASERS (G + D) ================= */
-    .lasers{
-      position:absolute;
-      inset:0;
-      z-index:3;
-      pointer-events:none;
-      mix-blend-mode:screen;
-      filter:saturate(1.9) contrast(1.15);
-    }
-    .laser{
-      position:absolute;
-      top:-60px;
-      width:7px;
-      height:140%;
-      filter:blur(.4px);
-      opacity:.95;
-      transform-origin: top center;
-      animation: laserMove .55s ease-in-out infinite alternate;
-    }
-    .laser.left{
-      left:-20px;
-      background:linear-gradient(to bottom, rgba(0,255,150,0), rgba(0,255,150,1), rgba(0,255,150,0));
-      box-shadow: 0 0 16px rgba(0,255,150,1), 0 0 44px rgba(0,255,150,.7);
-    }
-    .laser.right{
-      right:-20px;
-      background:linear-gradient(to bottom, rgba(255,40,40,0), rgba(255,40,40,1), rgba(255,40,40,0));
-      box-shadow: 0 0 16px rgba(255,40,40,1), 0 0 44px rgba(255,40,40,.7);
-      animation-delay:.18s;
-    }
-    @keyframes laserMove{
-      from{ transform: rotate(-42deg); }
-      to  { transform: rotate(42deg); }
-    }
+/* ================= FLASH PHOTO ================= */
+.flash{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at var(--x,50%) var(--y,40%),white,transparent 60%);
+  opacity:0;
+  z-index:6;
+  pointer-events:none;
+}
+.flash.active{animation:flash .18s ease-out}
+@keyframes flash{
+  0%{opacity:0}
+  30%{opacity:1}
+  100%{opacity:0}
+}
 
-    /* ================= FLASH PHOTO ================= */
-    .flash{
-      position:absolute;
-      inset:0;
-      z-index:6;
-      pointer-events:none;
-      opacity:0;
-      background:
-        radial-gradient(340px 240px at var(--x,50%) var(--y,30%),
-          rgba(255,255,255,.95),
-          rgba(255,255,255,0) 65%);
-      mix-blend-mode: screen;
-    }
-    .flash.active{ animation: flashPop 180ms ease-out forwards; }
-    @keyframes flashPop{
-      0%{opacity:0;}
-      20%{opacity:1;}
-      100%{opacity:0;}
-    }
+/* ================= DJ ================= */
+.dj{
+  position:absolute;
+  left:50%;
+  bottom:20px; /* ⬅️ BIEN BAS */
+  transform:translateX(-50%);
+  z-index:7;
+  animation:djMove .9s ease-in-out infinite alternate;
+}
+.dj img{
+  width:420px;
+  max-width:90vw;
+  filter:
+    drop-shadow(0 0 25px rgba(0,255,255,.6))
+    drop-shadow(0 0 35px rgba(255,0,180,.4));
+}
+@keyframes djMove{
+  from{transform:translateX(-50%) translateY(0)}
+  to{transform:translateX(-50%) translateY(-10px)}
+}
 
-    /* ================= DJ (IMAGE) ================= */
-    .dj{
-      position:absolute;
-      left:50%;
-      bottom:120px;
-      transform:translateX(-50%);
-      z-index:8;
-      animation:djMove .9s ease-in-out infinite alternate;
-      filter:
-        drop-shadow(0 0 25px rgba(0,220,255,.55))
-        drop-shadow(0 0 35px rgba(255,0,180,.35));
-    }
-    .dj img{
-      width:min(360px, 85vw);
-      height:auto;
-      display:block;
-    }
-    @keyframes djMove{
-      from{transform:translateX(-50%) translateY(0)}
-      to  {transform:translateX(-50%) translateY(-10px)}
-    }
+/* ================= TEXTE ================= */
+.heroBox{
+  position:relative;
+  z-index:8;
+  max-width:760px;
+  margin:90px auto 0;
+  padding:35px;
+  background:rgba(0,0,0,.55);
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(6px);
+  text-align:center;
+}
+.heroBox h1{margin:0;font-size:38px}
+.heroBox h2{margin:10px 0;font-size:24px}
+.heroBox p{margin-top:10px;font-weight:bold}
 
-    /* sol sombre */
-    .floor{
-      position:absolute;
-      left:0; right:0;
-      bottom:0;
-      height:170px;
-      z-index:7;
-      background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,0));
-      pointer-events:none;
-    }
-
-    /* ================= TEXTE ================= */
-    .heroBox{
-      position:relative;
-      z-index:9;
-      margin:110px auto 0;
-      max-width:760px;
-      padding:36px;
-      background:rgba(0,0,0,.55);
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.2);
-      backdrop-filter:blur(6px);
-      box-shadow: 0 30px 90px rgba(0,0,0,.6);
-    }
-    .brand{ font-size:42px; font-weight:900; margin-bottom:12px; }
-    .heroBox h1{ margin:0; font-size:28px; }
-    .heroBox p{ margin-top:12px; font-weight:600; opacity:.95; }
-
-    /* ================= SECTIONS ================= */
-    main{
-      background:#0b1220;
-      padding:70px 20px 50px;
-    }
-    .container{ max-width:1100px; margin:0 auto; }
-    h2{ margin:0 0 18px; font-size:28px; }
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap:18px;
-    }
-    .card{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;
-      padding:20px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.35);
-    }
-    .card h3{ margin:0 0 10px; font-size:18px; }
-    .card p{ margin:0; color:#dbeafe; opacity:.9; line-height:1.35; }
-
-    .contact{
-      margin-top:46px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;
-      padding:22px;
-    }
-    .contact ul{ margin:10px 0 0; padding-left:18px; }
-    .contact li{ margin:8px 0; color:#e5e7eb; }
-    .contact a{ color:#60a5fa; text-decoration:none; }
-    .contact a:hover{ text-decoration:underline; }
-
-    footer{
-      text-align:center;
-      padding:18px;
-      color:#94a3b8;
-      background:#0b1220;
-      border-top:1px solid #1e293b;
-    }
-
-    /* responsive */
-    @media (max-width: 900px){
-      .cards{ grid-template-columns:1fr; }
-      .brand{ font-size:34px; }
-      .heroBox h1{ font-size:24px; }
-    }
-  </style>
+/* ================= FOOTER ================= */
+footer{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  text-align:center;
+  padding:15px;
+  color:#9ca3af;
+  z-index:9;
+}
+</style>
 </head>
 
 <body>
@@ -296,73 +206,31 @@
     <div class="laser right"></div>
   </div>
 
-  <div class="flash" id="flashLayer"></div>
+  <div class="flash" id="flash"></div>
 
-  <!-- DJ IMAGE (il faut images/dj.png) -->
-  <div class="dj" aria-hidden="true">
-    <img src="images/dj.png" alt="DJ Valtrack" onerror="this.style.display='none'">
+  <div class="dj">
+    <img src="images/dj.png" alt="DJ">
   </div>
-
-  <div class="floor"></div>
 
   <div class="heroBox">
-    <div class="brand">Valtrack, Son &amp; Lumière</div>
-    <h1>DJ Animateur &amp; Photographe</h1>
+    <h1>Valtrack, Son & Lumière</h1>
+    <h2>DJ Animateur & Photographe</h2>
     <p>Mariages • Anniversaires • Événements privés</p>
   </div>
+
+  <footer>© 2026 – Valtrack, Son & Lumière</footer>
 </header>
 
-<main>
-  <div class="container">
-    <h2>Mes prestations</h2>
-
-    <div class="cards">
-      <div class="card">
-        <h3>🎧 DJ & Animation</h3>
-        <p>Ambiance sur mesure, playlist personnalisée, micro, animations et gestion des temps forts.</p>
-      </div>
-      <div class="card">
-        <h3>📸 Photographie</h3>
-        <p>Reportage événementiel, photos naturelles, retouches professionnelles et souvenirs durables.</p>
-      </div>
-      <div class="card">
-        <h3>✨ Packs DJ + Photo</h3>
-        <p>Un seul prestataire pour une organisation simple, fluide et efficace.</p>
-      </div>
-    </div>
-
-    <div class="contact">
-      <h2>Contact</h2>
-      <ul>
-        <li>📞 Téléphone : <strong>À compléter</strong></li>
-        <li>📍 Zone : <strong>À compléter</strong></li>
-        <li>📷 Instagram : <a href="#" target="_blank" rel="noopener">Lien Instagram</a></li>
-      </ul>
-    </div>
-  </div>
-</main>
-
-<footer>© 2026 – Valtrack, Son &amp; Lumière</footer>
-
 <script>
-  // Flashs photo aléatoires
-  const flash = document.getElementById('flashLayer');
-  function triggerFlash(){
-    const x = Math.floor(20 + Math.random()*60) + "%";
-    const y = Math.floor(10 + Math.random()*45) + "%";
-    flash.style.setProperty('--x', x);
-    flash.style.setProperty('--y', y);
-    flash.classList.remove('active');
-    void flash.offsetWidth;
-    flash.classList.add('active');
-  }
-  (function loop(){
-    setTimeout(()=>{
-      triggerFlash();
-      if(Math.random() < 0.35) setTimeout(triggerFlash, 120);
-      loop();
-    }, 1100 + Math.random()*1700);
-  })();
+const flash=document.getElementById("flash");
+function popFlash(){
+  flash.style.setProperty("--x",Math.random()*80+"%");
+  flash.style.setProperty("--y",Math.random()*50+"%");
+  flash.classList.remove("active");
+  void flash.offsetWidth;
+  flash.classList.add("active");
+}
+setInterval(()=>{if(Math.random()<.6)popFlash()},1200);
 </script>
 
 </body>
