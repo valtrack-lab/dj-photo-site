@@ -31,7 +31,7 @@
       background-repeat:no-repeat;
     }
 
-    /* Lumières colorées (spots) */
+    /* Lumières colorées “ambiantes” (glow) */
     header::before{
       content:"";
       position:absolute;
@@ -42,6 +42,7 @@
         radial-gradient(900px 420px at 50% 120%, rgba(255,255,255,.10), transparent 55%);
       pointer-events:none;
       animation: lightsMove 6.5s ease-in-out infinite alternate;
+      z-index:0;
     }
 
     @keyframes lightsMove{
@@ -49,21 +50,74 @@
       100% { transform: translate3d(12px,10px,0)  scale(1.02); filter:saturate(1.2); }
     }
 
-    /* Image platines en overlay (optionnelle) */
-    .decks{
+    /* Faisceaux néon (spots) */
+    .beams{
       position:absolute;
-      left:50%;
-      bottom:-30px;
-      transform:translateX(-50%);
-      width:min(860px, 92vw);
-      opacity:.28;
+      inset:-80px;
       z-index:0;
       pointer-events:none;
-      filter: contrast(1.08) saturate(1.05);
+      opacity:.55;
       mix-blend-mode: screen;
+      filter: blur(.2px) saturate(1.2);
     }
 
-    /* Flashs (on crée des “éclats” par-dessus) */
+    .beam{
+      position:absolute;
+      top:-120px;
+      width:520px;
+      height:820px;
+      transform-origin: top center;
+      opacity:.9;
+    }
+
+    .beam::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      opacity:.95;
+    }
+
+    .beam.purple{ left: 8%;  transform: rotate(-12deg); }
+    .beam.purple::before{
+      background: linear-gradient(to bottom,
+        rgba(124,92,255,0) 0%,
+        rgba(124,92,255,.60) 18%,
+        rgba(124,92,255,.20) 55%,
+        rgba(124,92,255,0) 100%
+      );
+    }
+
+    .beam.cyan{ left: 36%; transform: rotate(6deg); }
+    .beam.cyan::before{
+      background: linear-gradient(to bottom,
+        rgba(32,211,255,0) 0%,
+        rgba(32,211,255,.55) 18%,
+        rgba(32,211,255,.18) 55%,
+        rgba(32,211,255,0) 100%
+      );
+    }
+
+    .beam.pink{ left: 62%; transform: rotate(16deg); }
+    .beam.pink::before{
+      background: linear-gradient(to bottom,
+        rgba(255,70,180,0) 0%,
+        rgba(255,70,180,.48) 18%,
+        rgba(255,70,180,.15) 55%,
+        rgba(255,70,180,0) 100%
+      );
+    }
+
+    .beam{ animation: sweep 5.5s ease-in-out infinite alternate; }
+    .beam.cyan{ animation-duration: 6.4s; }
+    .beam.pink{ animation-duration: 7.2s; }
+
+    @keyframes sweep{
+      0%   { transform: translateX(-10px) rotate(-10deg); opacity:.65; }
+      100% { transform: translateX(14px)  rotate(12deg);  opacity:.95; }
+    }
+
+    /* Flashs (style flash appareil photo) */
     .flash{
       position:absolute;
       inset:0;
@@ -76,14 +130,26 @@
       mix-blend-mode: screen;
     }
 
-    .flash.active{
-      animation: flashPop 260ms ease-out forwards;
-    }
+    .flash.active{ animation: flashPop 260ms ease-out forwards; }
 
     @keyframes flashPop{
       0%   { opacity:0; }
       20%  { opacity:1; }
       100% { opacity:0; }
+    }
+
+    /* Image platines en overlay (optionnelle) */
+    .decks{
+      position:absolute;
+      left:50%;
+      bottom:-30px;
+      transform:translateX(-50%);
+      width:min(860px, 92vw);
+      opacity:.30;
+      z-index:0;
+      pointer-events:none;
+      filter: contrast(1.08) saturate(1.10);
+      mix-blend-mode: screen;
     }
 
     /* Bloc texte central */
@@ -118,7 +184,7 @@
       opacity:.95;
     }
 
-    /* Petit “sparkle” style flash photo dans le titre */
+    /* Petit “sparkle” (mini flash) à côté du nom */
     .spark{
       display:inline-block;
       width:10px;height:10px;
@@ -177,8 +243,14 @@
   <!-- Flash overlay -->
   <div class="flash" id="flashLayer"></div>
 
-  <!-- Platines (optionnel) : ajoute images/decks.png si tu veux -->
-  <!-- Si tu n’as pas d’image, tu peux supprimer cette ligne -->
+  <!-- Faisceaux néon -->
+  <div class="beams" aria-hidden="true">
+    <div class="beam purple"></div>
+    <div class="beam cyan"></div>
+    <div class="beam pink"></div>
+  </div>
+
+  <!-- Platines (optionnel) : mets un fichier images/decks.png (ou .jpg) -->
   <img class="decks" src="images/decks.png" alt="" onerror="this.style.display='none'">
 
   <div class="heroBox">
@@ -226,7 +298,6 @@
   const flash = document.getElementById('flashLayer');
 
   function triggerFlash(){
-    // positions aléatoires du flash
     const x = Math.floor(10 + Math.random()*80) + "%";
     const y = Math.floor(10 + Math.random()*55) + "%";
     const x2 = Math.floor(10 + Math.random()*80) + "%";
@@ -238,8 +309,7 @@
     flash.style.setProperty('--y2', y2);
 
     flash.classList.remove('active');
-    // relance animation
-    void flash.offsetWidth;
+    void flash.offsetWidth; // relance animation
     flash.classList.add('active');
   }
 
@@ -248,8 +318,7 @@
     const delay = 2000 + Math.random()*4000;
     setTimeout(() => {
       triggerFlash();
-      // parfois double flash
-      if (Math.random() < 0.25) setTimeout(triggerFlash, 180);
+      if (Math.random() < 0.25) setTimeout(triggerFlash, 180); // double flash parfois
       schedule();
     }, delay);
   }
@@ -258,4 +327,3 @@
 
 </body>
 </html>
-
