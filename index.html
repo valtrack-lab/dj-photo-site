@@ -13,7 +13,7 @@
       color:white;
     }
 
-    /* ================= HEADER / HERO ================= */
+    /* ================= HEADER ================= */
     header{
       padding:80px 20px;
       text-align:center;
@@ -24,42 +24,37 @@
       background:
         radial-gradient(900px 420px at 20% 10%, rgba(99,102,241,.55), transparent 60%),
         radial-gradient(700px 420px at 85% 20%, rgba(34,211,238,.45), transparent 60%),
-        radial-gradient(600px 380px at 50% 120%, rgba(0,0,0,.25), transparent 60%),
         linear-gradient(135deg, #6366f1, #22d3ee);
     }
 
-    /* Effet lumière + grain */
-    header::before{
-      content:"";
+    /* Décor DJ / Photo / Lumière */
+    header .decor{
       position:absolute;
       inset:0;
-      background:
-        radial-gradient(1200px 500px at 50% 0%, rgba(255,255,255,.15), transparent 60%),
-        radial-gradient(900px 500px at 0% 100%, rgba(0,0,0,.18), transparent 60%),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.035) 0px,
-          rgba(255,255,255,.035) 1px,
-          transparent 2px,
-          transparent 4px
-        );
-      opacity:.55;
+      z-index:0;
       pointer-events:none;
+      opacity:.18;
     }
 
-    header > *{
-      position:relative;
-      z-index:1;
+    header .decor svg{
+      position:absolute;
+      fill: rgba(2,6,23,.55);
     }
+
+    .cam{ left:6%; top:18%; width:200px; transform: rotate(-8deg); }
+    .dj{ right:6%; top:20%; width:240px; transform: rotate(8deg); }
+    .spot{ left:50%; bottom:-40px; width:520px; transform: translateX(-50%); }
 
     /* Bloc texte central */
     .heroBox{
+      position:relative;
+      z-index:1;
       display:inline-block;
-      padding:22px 30px;
+      padding:24px 32px;
       border-radius:18px;
-      background:rgba(2,6,23,.14);
+      background:rgba(2,6,23,.15);
       backdrop-filter: blur(6px);
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.2);
       box-shadow:0 20px 60px rgba(0,0,0,.25);
     }
 
@@ -71,8 +66,8 @@
     }
 
     header h1{
-      font-size:28px;
       margin:0;
+      font-size:28px;
       font-weight:800;
     }
 
@@ -105,19 +100,12 @@
       box-shadow:0 14px 40px rgba(0,0,0,.3);
     }
 
-    .card h3{
-      margin-top:0;
-    }
-
     /* ================= CONTACT ================= */
-    .contact p{
-      line-height:1.8;
-    }
-
     a{
       color:#22d3ee;
       text-decoration:none;
     }
+
     a:hover{
       text-decoration:underline;
     }
@@ -135,11 +123,34 @@
 <body>
 
 <header>
+
+  <!-- DECOR VISUEL -->
+  <div class="decor">
+    <!-- Appareil photo -->
+    <svg class="cam" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M22 14l2-4h16l2 4h8a6 6 0 016 6v24a6 6 0 01-6 6H12a6 6 0 01-6-6V20a6 6 0 016-6h10zm10 30a12 12 0 100-24 12 12 0 000 24z"/>
+    </svg>
+
+    <!-- Platine DJ -->
+    <svg class="dj" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M10 18a6 6 0 016-6h32a6 6 0 016 6v28a6 6 0 01-6 6H16a6 6 0 01-6-6V18zm12 26a8 8 0 100-16 8 8 0 000 16zm20 0a8 8 0 100-16 8 8 0 000 16z"/>
+    </svg>
+
+    <!-- Faisceaux lumineux -->
+    <svg class="spot" viewBox="0 0 800 400" aria-hidden="true">
+      <polygon points="320,80 120,400 520,400" fill="rgba(2,6,23,.6)"/>
+      <polygon points="480,80 280,400 680,400" fill="rgba(2,6,23,.45)"/>
+      <circle cx="400" cy="70" r="26" fill="rgba(2,6,23,.7)"/>
+    </svg>
+  </div>
+
+  <!-- TEXTE CENTRAL -->
   <div class="heroBox">
     <div class="brand">Valtrack, Son &amp; Lumière</div>
     <h1>DJ Animateur &amp; Photographe</h1>
     <p>Mariages • Anniversaires • Événements privés</p>
   </div>
+
 </header>
 
 <section>
@@ -147,36 +158,27 @@
   <div class="services">
     <div class="card">
       <h3>🎧 DJ &amp; Animation</h3>
-      <p>
-        Ambiance sur mesure, playlist personnalisée,
-        micro, animations et gestion des temps forts.
-      </p>
+      <p>Ambiance sur mesure, playlist personnalisée, micro et gestion des temps forts.</p>
     </div>
 
     <div class="card">
       <h3>📸 Photographie</h3>
-      <p>
-        Reportage événementiel, photos naturelles,
-        retouches professionnelles et souvenirs durables.
-      </p>
+      <p>Reportage événementiel, photos naturelles, retouches professionnelles.</p>
     </div>
 
     <div class="card">
       <h3>✨ Packs DJ + Photo</h3>
-      <p>
-        Un seul prestataire pour une organisation
-        simple, fluide et efficace.
-      </p>
+      <p>Un seul prestataire pour une organisation simple, fluide et efficace.</p>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
+<section>
   <h2>Contact</h2>
   <p>
     📞 Téléphone : <strong>À compléter</strong><br>
     📍 Zone : <strong>À compléter</strong><br>
-    📷 Instagram : <a href="#" target="_blank">Lien Instagram</a>
+    📷 Instagram : <a href="#">Lien Instagram</a>
   </p>
 </section>
 
