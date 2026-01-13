@@ -1,176 +1,321 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Valtrack, Son & Lumière – DJ Animateur & Photographe</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valtrack, Son & Lumière – DJ Animateur & Photographe</title>
 
-<style>
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:#0f172a;
-  color:white;
-}
+  <style>
+    :root{
+      --bg1: rgba(8,12,25,.92);
+      --bg2: rgba(8,12,25,.45);
+    }
 
-/* ================= HERO ================= */
-header{
-  min-height:560px;
-  padding:90px 20px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  color:#eaf2ff;
-  background:
-    linear-gradient(135deg, rgba(8,12,25,.92), rgba(8,12,25,.45)),
-    url("images/hero.jpg");
-  background-size:cover;
-  background-position:center;
-}
+    *{ box-sizing: border-box; }
 
-/* ================= FUMÉE ================= */
-.smoke{
-  position:absolute;
-  inset:-35%;
-  z-index:0;
-  pointer-events:none;
-  filter: blur(36px);
-  opacity:.6;
-  mix-blend-mode: screen;
-}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:#0f172a;
+      color:white;
+    }
 
-/* ================= LYRES RGB ================= */
-.beams{
-  position:absolute;
-  inset:-140px;
-  z-index:1;
-  pointer-events:none;
-  mix-blend-mode: screen;
-}
+    /* ================= HERO ================= */
+    header{
+      min-height:560px;
+      padding:90px 20px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      color:#eaf2ff;
+      background:
+        linear-gradient(135deg, var(--bg1), var(--bg2)),
+        url("images/hero.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
 
-/* (lyres RGB conservées – identiques à la version précédente) */
-/* … elles sont déjà dans ton code, je ne les réécris pas ici */
+    /* léger glow global */
+    header::before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background:
+        radial-gradient(900px 450px at 15% 10%, rgba(50,180,255,.20), transparent 60%),
+        radial-gradient(900px 450px at 85% 10%, rgba(170,80,255,.18), transparent 60%),
+        radial-gradient(900px 450px at 50% 120%, rgba(255,255,255,.08), transparent 55%);
+      pointer-events:none;
+      z-index:0;
+    }
 
-/* ================= LASERS ================= */
-.lasers{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:none;
-  mix-blend-mode: screen;
-}
+    /* ================= FUMÉE ================= */
+    .smoke{
+      position:absolute;
+      inset:-35%;
+      z-index:1;
+      pointer-events:none;
+      filter: blur(34px);
+      opacity:.55;
+      mix-blend-mode: screen;
+    }
+    .smoke::before,
+    .smoke::after{
+      content:"";
+      position:absolute;
+      width:120%;
+      height:120%;
+      background:
+        radial-gradient(circle at 28% 78%, rgba(255,255,255,.30), transparent 55%),
+        radial-gradient(circle at 55% 84%, rgba(255,255,255,.22), transparent 60%),
+        radial-gradient(circle at 82% 70%, rgba(255,255,255,.26), transparent 55%),
+        radial-gradient(circle at 40% 62%, rgba(255,255,255,.18), transparent 60%);
+      animation: smokeMove 20s linear infinite;
+    }
+    .smoke::after{
+      animation-duration: 30s;
+      opacity:.65;
+    }
+    @keyframes smokeMove{
+      0%   { transform: translateY(120px) translateX(-80px) scale(1); }
+      50%  { transform: translateY(-40px)  translateX(30px)  scale(1.15); }
+      100% { transform: translateY(-180px) translateX(120px) scale(1.3); }
+    }
 
-/* ================= DANSEURS ================= */
-.dancers{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:220px;
-  z-index:3;
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  pointer-events:none;
-}
+    /* ================= FLASH PHOTO ================= */
+    .flash{
+      position:absolute;
+      inset:0;
+      z-index:4;
+      pointer-events:none;
+      opacity:0;
+      background:
+        radial-gradient(340px 240px at var(--x,50%) var(--y,30%),
+          rgba(255,255,255,.95),
+          rgba(255,255,255,0) 65%);
+      mix-blend-mode: screen;
+    }
+    .flash.active{ animation: flashPop 180ms ease-out forwards; }
+    @keyframes flashPop{
+      0%{opacity:0;}
+      20%{opacity:1;}
+      100%{opacity:0;}
+    }
 
-/* silhouette */
-.dancer{
-  width:60px;
-  height:160px;
-  background:#000;
-  border-radius:30px 30px 20px 20px;
-  position:relative;
-  opacity:.85;
-  animation: bounce 0.9s ease-in-out infinite alternate;
-}
+    /* ================= LASERS (G + D) MOBILES ================= */
+    .lasers{
+      position:absolute;
+      inset:0;
+      z-index:3;             /* au-dessus fumée/lyres */
+      pointer-events:none;
+      mix-blend-mode: screen;
+      filter: saturate(1.9) contrast(1.2);
+    }
 
-/* tête */
-.dancer::before{
-  content:"";
-  position:absolute;
-  top:-28px;
-  left:50%;
-  transform:translateX(-50%);
-  width:38px;
-  height:38px;
-  background:#000;
-  border-radius:50%;
-}
+    .laser{
+      position:absolute;
+      top:-60px;
+      width:10px;
+      height:140%;
+      transform-origin: top center;
+      filter: blur(.6px);
+      opacity:.95;
+      animation:
+        laserMove .55s ease-in-out infinite alternate,
+        laserFlicker .22s linear infinite;
+    }
 
-/* bras */
-.arm{
-  position:absolute;
-  width:16px;
-  height:80px;
-  background:#000;
-  top:20px;
-  border-radius:10px;
-  transform-origin: top center;
-}
+    .laser::after{
+      content:"";
+      position:absolute;
+      left:-160px;
+      width:320px;
+      height:100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(var(--lr), var(--lg), var(--lb), .40),
+        rgba(var(--lr), var(--lg), var(--lb), 0)
+      );
+      filter: blur(28px);
+      opacity:.55;
+    }
 
-.arm.left{ left:-8px; animation: armLeft 0.7s infinite alternate; }
-.arm.right{ right:-8px; animation: armRight 0.8s infinite alternate; }
+    .laser.left{
+      left:-30px;
+      --lr:0; --lg:255; --lb:140;
+      background: linear-gradient(to bottom, rgba(0,255,140,0), rgba(0,255,140,1), rgba(0,255,140,0));
+      box-shadow: 0 0 18px rgba(0,255,140,1), 0 0 55px rgba(0,255,140,.85);
+      animation-delay: 0s, .10s;
+    }
+    .laser.right{
+      right:-30px;
+      --lr:255; --lg:40; --lb:40;
+      background: linear-gradient(to bottom, rgba(255,40,40,0), rgba(255,40,40,1), rgba(255,40,40,0));
+      box-shadow: 0 0 18px rgba(255,40,40,1), 0 0 55px rgba(255,40,40,.85);
+      animation-delay: .12s, .05s;
+    }
 
-/* animations danse */
-@keyframes bounce{
-  0%{ transform: translateY(0); }
-  100%{ transform: translateY(-14px); }
-}
-@keyframes armLeft{
-  0%{ transform: rotate(-40deg); }
-  100%{ transform: rotate(10deg); }
-}
-@keyframes armRight{
-  0%{ transform: rotate(40deg); }
-  100%{ transform: rotate(-10deg); }
-}
+    @keyframes laserMove{
+      0%   { transform: rotate(-42deg); }
+      100% { transform: rotate(42deg); }
+    }
+    @keyframes laserFlicker{
+      0%   { opacity:.55; }
+      100% { opacity:1; }
+    }
 
-/* désynchronisation */
-.dancer:nth-child(2){ animation-duration:1.1s; transform:scale(0.95); }
-.dancer:nth-child(3){ animation-duration:0.75s; transform:scale(1.05); }
-.dancer:nth-child(4){ animation-duration:1.3s; transform:scale(0.9); }
+    /* ================= LYRES RGB (VRAIES COULEURS) ================= */
+    .beams{
+      position:absolute;
+      inset:-140px;
+      z-index:2;
+      pointer-events:none;
+      mix-blend-mode: screen;
+      filter: saturate(1.9) contrast(1.25);
+    }
 
-/* ================= TEXTE ================= */
-.heroBox{
-  position:relative;
-  z-index:4;
-  display:inline-block;
-  padding:30px 38px;
-  border-radius:22px;
-  background:rgba(0,0,0,.55);
-  backdrop-filter: blur(6px);
-  border:1px solid rgba(255,255,255,.2);
-  box-shadow:0 30px 90px rgba(0,0,0,.6);
-}
+    .beam{
+      position:absolute;
+      top:-150px;
+      width:560px;
+      height:1050px;
+      transform-origin: top center;
+    }
 
-.brand{ font-size:42px; font-weight:900; margin-bottom:12px; }
-header h1{ margin:0; font-size:28px; }
-header p{ margin-top:12px; font-weight:600; }
+    .beam::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(var(--r), var(--g), var(--b), 0) 0%,
+        rgba(var(--r), var(--g), var(--b), .95) 14%,
+        rgba(var(--r), var(--g), var(--b), .35) 55%,
+        rgba(var(--r), var(--g), var(--b), 0) 100%
+      );
+      filter: blur(.7px);
+    }
+    .beam::after{
+      content:"";
+      position:absolute;
+      inset:-50px -100px;
+      clip-path: polygon(50% 0%, 8% 100%, 92% 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(var(--r), var(--g), var(--b), .45),
+        rgba(var(--r), var(--g), var(--b), 0)
+      );
+      filter: blur(22px);
+    }
 
-footer{
-  text-align:center;
-  padding:24px;
-  border-top:1px solid #1e293b;
-  color:#94a3b8;
-}
-</style>
+    .b1{ left:10%; }
+    .b2{ left:30%; }
+    .b3{ left:50%; }
+    .b4{ left:70%; }
+
+    /* désynchro + RGB */
+    .b1{ animation: panA .85s ease-in-out infinite alternate, rgbA 2.2s linear infinite, pulse .45s linear infinite; }
+    .b2{ animation: panB 1.15s ease-in-out infinite alternate, rgbB 2.8s linear infinite, pulse .55s linear infinite; }
+    .b3{ animation: panC .95s ease-in-out infinite alternate,  rgbC 3.4s linear infinite, pulse .48s linear infinite; }
+    .b4{ animation: panD 1.35s ease-in-out infinite alternate, rgbD 4.0s linear infinite, pulse .60s linear infinite; }
+
+    @keyframes panA{ 0%{transform:rotate(-30deg);}100%{transform:rotate(24deg);} }
+    @keyframes panB{ 0%{transform:rotate(22deg);}100%{transform:rotate(-28deg);} }
+    @keyframes panC{ 0%{transform:rotate(-18deg);}100%{transform:rotate(34deg);} }
+    @keyframes panD{ 0%{transform:rotate(30deg);}100%{transform:rotate(-22deg);} }
+
+    /* RGB réels (variables) */
+    @keyframes rgbA{
+      0%{--r:255;--g:0;--b:0;}
+      33%{--r:0;--g:255;--b:0;}
+      66%{--r:0;--g:0;--b:255;}
+      100%{--r:255;--g:0;--b:0;}
+    }
+    @keyframes rgbB{
+      0%{--r:0;--g:255;--b:255;}
+      50%{--r:255;--g:0;--b:255;}
+      100%{--r:0;--g:255;--b:255;}
+    }
+    @keyframes rgbC{
+      0%{--r:255;--g:255;--b:0;}
+      50%{--r:0;--g:0;--b:255;}
+      100%{--r:255;--g:255;--b:0;}
+    }
+    @keyframes rgbD{
+      0%{--r:255;--g:0;--b:128;}
+      50%{--r:0;--g:255;--b:128;}
+      100%{--r:255;--g:0;--b:128;}
+    }
+
+    @keyframes pulse{
+      0%,100%{ opacity:.7; }
+      50%{ opacity:1; }
+    }
+
+    /* ================= DANSEURS (silhouettes SVG) ================= */
+    .dancers{
+      position:absolute;
+      left:0; right:0;
+      bottom:-8px;
+      height:220px;
+      z-index:5; /* devant tout (sauf texte) */
+      pointer-events:none;
+      display:flex;
+      justify-content:center;
+      gap:26px;
+      opacity:.95;
+    }
+
+    .dancer{
+      width:110px;
+      height:220px;
+      filter: drop-shadow(0 16px 30px rgba(0,0,0,.55));
+      animation: dancerBounce 0.85s ease-in-out infinite alternate;
+      transform-origin: 50% 100%;
+    }
+
+    .dancer:nth-child(2){ animation-duration:1.05s; transform: scale(.95); }
+    .dancer:nth-child(3){ animation-duration:0.72s; transform: scale(1.02); }
+    .dancer:nth-child(4){ animation-duration:1.22s; transform: scale(.92); }
+
+    @keyframes dancerBounce{
+      0%{ transform: translateY(0) rotate(-1deg); }
+      100%{ transform: translateY(-14px) rotate(1deg); }
+    }
+
+    /* ================= TEXTE ================= */
+    .heroBox{
+      position:relative;
+      z-index:6;
+      display:inline-block;
+      padding:30px 38px;
+      border-radius:22px;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.2);
+      box-shadow:0 30px 90px rgba(0,0,0,.6);
+      margin-top: 30px;
+    }
+    .brand{ font-size:42px; font-weight:900; margin-bottom:12px; }
+    header h1{ margin:0; font-size:28px; }
+    header p{ margin-top:12px; font-weight:600; opacity:.95; }
+
+    footer{
+      text-align:center;
+      padding:24px;
+      border-top:1px solid #1e293b;
+      color:#94a3b8;
+      background:#0f172a;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-
-  <!-- fumée -->
   <div class="smoke"></div>
 
-  <!-- lasers -->
-  <div class="lasers">
-    <div class="laser left"></div>
-    <div class="laser right"></div>
-  </div>
-
-  <!-- lyres RGB -->
   <div class="beams">
     <div class="beam b1"></div>
     <div class="beam b2"></div>
@@ -178,38 +323,68 @@ footer{
     <div class="beam b4"></div>
   </div>
 
-  <!-- DANSEURS -->
-  <div class="dancers">
-    <div class="dancer">
-      <div class="arm left"></div>
-      <div class="arm right"></div>
-    </div>
-    <div class="dancer">
-      <div class="arm left"></div>
-      <div class="arm right"></div>
-    </div>
-    <div class="dancer">
-      <div class="arm left"></div>
-      <div class="arm right"></div>
-    </div>
-    <div class="dancer">
-      <div class="arm left"></div>
-      <div class="arm right"></div>
-    </div>
+  <div class="lasers">
+    <div class="laser left"></div>
+    <div class="laser right"></div>
   </div>
 
-  <!-- texte -->
+  <div class="flash" id="flashLayer"></div>
+
+  <!-- Danseurs (silhouettes) -->
+  <div class="dancers" aria-hidden="true">
+    <!-- Silhouette 1 -->
+    <svg class="dancer" viewBox="0 0 120 220">
+      <path fill="#000" d="M64 18a16 16 0 1 1-32 0 16 16 0 0 1 32 0ZM40 46c14-6 28 6 30 18l6 36c2 10-4 18-14 18h-4l6 46c1 10-5 18-15 18s-16-8-15-18l5-46h-3c-9 0-16-7-15-16l3-34c1-12 6-18 16-22Z"/>
+      <path fill="#000" d="M80 84c10 10 18 8 22 3l8 10c-8 10-20 12-34 0Z"/>
+    </svg>
+
+    <!-- Silhouette 2 -->
+    <svg class="dancer" viewBox="0 0 120 220">
+      <path fill="#000" d="M70 20a15 15 0 1 1-30 0 15 15 0 0 1 30 0ZM46 50c12-8 30-3 34 14l10 42c2 8-3 15-11 15h-8l6 42c2 12-6 20-16 20s-16-8-15-20l4-42h-8c-8 0-13-6-12-14l6-40c2-12 6-15 10-17Z"/>
+      <path fill="#000" d="M18 98c20 6 34-8 40-18l10 8c-10 22-30 30-54 22Z"/>
+    </svg>
+
+    <!-- Silhouette 3 -->
+    <svg class="dancer" viewBox="0 0 120 220">
+      <path fill="#000" d="M66 18a16 16 0 1 1-32 0 16 16 0 0 1 32 0ZM40 48c10-7 26-4 32 10l16 38c4 8 0 16-8 18l-6 2 10 40c3 12-4 22-15 22s-16-10-14-22l6-32-12-26-6 26-2 34c-1 10-7 18-16 18-10 0-16-8-15-18l2-38c1-14 6-26 18-32Z"/>
+    </svg>
+
+    <!-- Silhouette 4 -->
+    <svg class="dancer" viewBox="0 0 120 220">
+      <path fill="#000" d="M68 18a16 16 0 1 1-32 0 16 16 0 0 1 32 0ZM38 50c14-8 32 0 36 16l8 38c2 10-4 18-14 18h-6l6 42c2 12-5 20-15 20s-16-8-15-20l4-42h-6c-10 0-15-8-14-18l4-34c2-14 6-18 12-20Z"/>
+      <path fill="#000" d="M86 78c10 20 22 22 28 18l4 12c-10 8-28 4-40-20Z"/>
+    </svg>
+  </div>
+
   <div class="heroBox">
     <div class="brand">Valtrack, Son &amp; Lumière</div>
     <h1>DJ Animateur &amp; Photographe</h1>
     <p>Mariages • Anniversaires • Événements privés</p>
   </div>
-
 </header>
 
-<footer>
-  © 2026 – Valtrack, Son &amp; Lumière
-</footer>
+<footer>© 2026 – Valtrack, Son &amp; Lumière</footer>
+
+<script>
+  // Flashs photo aléatoires
+  const flash = document.getElementById('flashLayer');
+  function triggerFlash(){
+    const x = Math.floor(20 + Math.random()*60) + "%";
+    const y = Math.floor(10 + Math.random()*45) + "%";
+    flash.style.setProperty('--x', x);
+    flash.style.setProperty('--y', y);
+    flash.classList.remove('active');
+    void flash.offsetWidth;
+    flash.classList.add('active');
+  }
+  (function loop(){
+    setTimeout(()=>{
+      triggerFlash();
+      if(Math.random() < 0.35) setTimeout(triggerFlash, 120); // double flash parfois
+      loop();
+    }, 1100 + Math.random()*1700);
+  })();
+</script>
 
 </body>
 </html>
