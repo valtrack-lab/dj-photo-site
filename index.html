@@ -13,61 +13,74 @@
       color:white;
     }
 
-    /* ================= HERO / HEADER ================= */
+    /* ================= HERO ================= */
     header{
-      min-height:420px;
+      min-height:460px;
       padding:90px 20px;
       text-align:center;
       position:relative;
       overflow:hidden;
       color:#eaf2ff;
 
-      /* Fond photo + voile sombre */
       background:
-        linear-gradient(135deg, rgba(8,12,25,.88), rgba(8,12,25,.35)),
+        linear-gradient(135deg, rgba(8,12,25,.90), rgba(8,12,25,.40)),
         url("images/hero.jpg");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
     }
 
-    /* Lumières colorées “ambiantes” (glow) */
-    header::before{
-      content:"";
+    /* ================= FUMÉE (machine à fumée) ================= */
+    .smoke{
       position:absolute;
-      inset:-40px;
-      background:
-        radial-gradient(700px 360px at 18% 20%, rgba(124,92,255,.55), transparent 62%),
-        radial-gradient(720px 380px at 85% 12%, rgba(32,211,255,.45), transparent 65%),
-        radial-gradient(900px 420px at 50% 120%, rgba(255,255,255,.10), transparent 55%);
-      pointer-events:none;
-      animation: lightsMove 6.5s ease-in-out infinite alternate;
-      z-index:0;
-    }
-
-    @keyframes lightsMove{
-      0%   { transform: translate3d(-10px,-8px,0) scale(1);   filter:saturate(1.05); }
-      100% { transform: translate3d(12px,10px,0)  scale(1.02); filter:saturate(1.2); }
-    }
-
-    /* Faisceaux néon (spots) */
-    .beams{
-      position:absolute;
-      inset:-80px;
+      inset:-20%;
       z-index:0;
       pointer-events:none;
+      filter: blur(28px);
       opacity:.55;
       mix-blend-mode: screen;
-      filter: blur(.2px) saturate(1.2);
+    }
+
+    .smoke::before,
+    .smoke::after{
+      content:"";
+      position:absolute;
+      width:120%;
+      height:120%;
+      background:
+        radial-gradient(circle at 30% 70%, rgba(255,255,255,.35), transparent 55%),
+        radial-gradient(circle at 60% 80%, rgba(255,255,255,.25), transparent 60%),
+        radial-gradient(circle at 80% 65%, rgba(255,255,255,.30), transparent 55%);
+      animation: smokeMove 16s linear infinite;
+    }
+
+    .smoke::after{
+      animation-duration: 22s;
+      opacity:.65;
+    }
+
+    @keyframes smokeMove{
+      0%   { transform: translateY(60px) translateX(-40px) scale(1); }
+      50%  { transform: translateY(-20px) translateX(20px) scale(1.1); }
+      100% { transform: translateY(-90px) translateX(60px) scale(1.2); }
+    }
+
+    /* ================= LYRES / FAISCEAUX ================= */
+    .beams{
+      position:absolute;
+      inset:-120px;
+      z-index:0;
+      pointer-events:none;
+      mix-blend-mode: screen;
+      filter: saturate(1.8) contrast(1.25);
     }
 
     .beam{
       position:absolute;
-      top:-120px;
-      width:520px;
-      height:820px;
+      top:-140px;
+      width:560px;
+      height:1000px;
       transform-origin: top center;
-      opacity:.9;
     }
 
     .beam::before{
@@ -75,49 +88,52 @@
       position:absolute;
       inset:0;
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      opacity:.95;
+      background:
+        linear-gradient(to bottom,
+          rgba(var(--c),0) 0%,
+          rgba(var(--c),.95) 14%,
+          rgba(var(--c),.35) 55%,
+          rgba(var(--c),0) 100%
+        );
+      filter: blur(.6px);
     }
 
-    .beam.purple{ left: 8%;  transform: rotate(-12deg); }
-    .beam.purple::before{
-      background: linear-gradient(to bottom,
-        rgba(124,92,255,0) 0%,
-        rgba(124,92,255,.60) 18%,
-        rgba(124,92,255,.20) 55%,
-        rgba(124,92,255,0) 100%
+    .beam::after{
+      content:"";
+      position:absolute;
+      inset:-40px -80px;
+      clip-path: polygon(50% 0%, 8% 100%, 92% 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(var(--c),.35),
+        rgba(var(--c),0)
       );
+      filter: blur(18px);
     }
 
-    .beam.cyan{ left: 36%; transform: rotate(6deg); }
-    .beam.cyan::before{
-      background: linear-gradient(to bottom,
-        rgba(32,211,255,0) 0%,
-        rgba(32,211,255,.55) 18%,
-        rgba(32,211,255,.18) 55%,
-        rgba(32,211,255,0) 100%
-      );
+    .b1{ left:-6%;  --c:255,50,120; }
+    .b2{ left:18%;  --c:0,220,255; }
+    .b3{ left:42%;  --c:165,90,255; }
+    .b4{ left:66%;  --c:60,255,140; }
+
+    .beam{
+      animation: lyrePan .9s ease-in-out infinite alternate,
+                 lyrePulse .45s linear infinite;
+    }
+    .b2{ animation-duration:.75s,.40s; }
+    .b3{ animation-duration:1.05s,.48s; }
+    .b4{ animation-duration:.85s,.42s; }
+
+    @keyframes lyrePan{
+      0%   { transform: translateX(-18px) rotate(-22deg); }
+      100% { transform: translateX(18px)  rotate(22deg); }
+    }
+    @keyframes lyrePulse{
+      0%,100%{ opacity:.75; }
+      50%    { opacity:1; }
     }
 
-    .beam.pink{ left: 62%; transform: rotate(16deg); }
-    .beam.pink::before{
-      background: linear-gradient(to bottom,
-        rgba(255,70,180,0) 0%,
-        rgba(255,70,180,.48) 18%,
-        rgba(255,70,180,.15) 55%,
-        rgba(255,70,180,0) 100%
-      );
-    }
-
-    .beam{ animation: sweep 5.5s ease-in-out infinite alternate; }
-    .beam.cyan{ animation-duration: 6.4s; }
-    .beam.pink{ animation-duration: 7.2s; }
-
-    @keyframes sweep{
-      0%   { transform: translateX(-10px) rotate(-10deg); opacity:.65; }
-      100% { transform: translateX(14px)  rotate(12deg);  opacity:.95; }
-    }
-
-    /* Flashs (style flash appareil photo) */
+    /* ================= FLASH PHOTO ================= */
     .flash{
       position:absolute;
       inset:0;
@@ -125,51 +141,46 @@
       pointer-events:none;
       opacity:0;
       background:
-        radial-gradient(320px 220px at var(--x,50%) var(--y,30%), rgba(255,255,255,.95), rgba(255,255,255,0) 65%),
-        radial-gradient(900px 420px at var(--x2,60%) var(--y2,40%), rgba(255,255,255,.35), rgba(255,255,255,0) 70%);
+        radial-gradient(320px 220px at var(--x,50%) var(--y,30%), rgba(255,255,255,.95), rgba(255,255,255,0) 65%);
       mix-blend-mode: screen;
     }
-
-    .flash.active{ animation: flashPop 260ms ease-out forwards; }
-
+    .flash.active{ animation: flashPop 200ms ease-out forwards; }
     @keyframes flashPop{
-      0%   { opacity:0; }
-      20%  { opacity:1; }
-      100% { opacity:0; }
+      0%{opacity:0;}
+      20%{opacity:1;}
+      100%{opacity:0;}
     }
 
-    /* Image platines en overlay (optionnelle) */
+    /* ================= PLATINES ================= */
     .decks{
       position:absolute;
       left:50%;
       bottom:-30px;
       transform:translateX(-50%);
-      width:min(860px, 92vw);
-      opacity:.30;
+      width:min(900px, 92vw);
+      opacity:.35;
       z-index:0;
-      pointer-events:none;
-      filter: contrast(1.08) saturate(1.10);
       mix-blend-mode: screen;
+      filter: saturate(1.25) contrast(1.2);
     }
 
-    /* Bloc texte central */
+    /* ================= TEXTE ================= */
     .heroBox{
       position:relative;
       z-index:1;
       display:inline-block;
       padding:28px 36px;
       border-radius:20px;
-      background:rgba(0,0,0,.45);
+      background:rgba(0,0,0,.5);
       backdrop-filter: blur(6px);
       border:1px solid rgba(255,255,255,.2);
-      box-shadow:0 30px 90px rgba(0,0,0,.45);
+      box-shadow:0 30px 90px rgba(0,0,0,.5);
     }
 
     .brand{
       font-size:42px;
       font-weight:900;
       margin-bottom:12px;
-      letter-spacing:.5px;
     }
 
     header h1{
@@ -181,24 +192,6 @@
     header p{
       margin-top:12px;
       font-weight:600;
-      opacity:.95;
-    }
-
-    /* Petit “sparkle” (mini flash) à côté du nom */
-    .spark{
-      display:inline-block;
-      width:10px;height:10px;
-      margin-left:10px;
-      border-radius:50%;
-      background:rgba(255,255,255,.95);
-      box-shadow: 0 0 18px rgba(255,255,255,.95);
-      animation: sparkle 1.8s infinite;
-      vertical-align:middle;
-    }
-    @keyframes sparkle{
-      0%,70% { transform:scale(.35); opacity:.1; }
-      75%    { transform:scale(1.1); opacity:1; }
-      100%   { transform:scale(.4); opacity:.05; }
     }
 
     /* ================= SECTIONS ================= */
@@ -207,8 +200,6 @@
       margin:auto;
       padding:60px 20px;
     }
-
-    h2{ margin-bottom:20px; font-size:26px; }
 
     .services{
       display:grid;
@@ -223,11 +214,6 @@
       box-shadow:0 20px 60px rgba(0,0,0,.35);
     }
 
-    .card h3{ margin-top:0; }
-
-    a{ color:#22d3ee; text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-
     footer{
       text-align:center;
       padding:24px;
@@ -240,23 +226,25 @@
 <body>
 
 <header>
-  <!-- Flash overlay -->
+  <!-- fumée -->
+  <div class="smoke"></div>
+
+  <!-- flash photo -->
   <div class="flash" id="flashLayer"></div>
 
-  <!-- Faisceaux néon -->
-  <div class="beams" aria-hidden="true">
-    <div class="beam purple"></div>
-    <div class="beam cyan"></div>
-    <div class="beam pink"></div>
+  <!-- faisceaux lyres -->
+  <div class="beams">
+    <div class="beam b1"></div>
+    <div class="beam b2"></div>
+    <div class="beam b3"></div>
+    <div class="beam b4"></div>
   </div>
 
-  <!-- Platines (optionnel) : mets un fichier images/decks.png (ou .jpg) -->
+  <!-- platines (optionnel) -->
   <img class="decks" src="images/decks.png" alt="" onerror="this.style.display='none'">
 
   <div class="heroBox">
-    <div class="brand">
-      Valtrack, Son &amp; Lumière <span class="spark" aria-hidden="true"></span>
-    </div>
+    <div class="brand">Valtrack, Son &amp; Lumière</div>
     <h1>DJ Animateur &amp; Photographe</h1>
     <p>Mariages • Anniversaires • Événements privés</p>
   </div>
@@ -265,28 +253,10 @@
 <section>
   <h2>Mes prestations</h2>
   <div class="services">
-    <div class="card">
-      <h3>🎧 DJ &amp; Animation</h3>
-      <p>Ambiance sur mesure, playlist personnalisée, micro, animations et gestion des temps forts.</p>
-    </div>
-    <div class="card">
-      <h3>📸 Photographie</h3>
-      <p>Reportage événementiel, photos naturelles, retouches professionnelles et souvenirs durables.</p>
-    </div>
-    <div class="card">
-      <h3>✨ Packs DJ + Photo</h3>
-      <p>Un seul prestataire pour une organisation simple, fluide et efficace.</p>
-    </div>
+    <div class="card">🎧 DJ & Animation</div>
+    <div class="card">📸 Photographie</div>
+    <div class="card">✨ Packs DJ + Photo</div>
   </div>
-</section>
-
-<section class="contact">
-  <h2>Contact</h2>
-  <p>
-    📞 Téléphone : <strong>À compléter</strong><br>
-    📍 Zone : <strong>À compléter</strong><br>
-    📷 Instagram : <a href="#">Lien Instagram</a>
-  </p>
 </section>
 
 <footer>
@@ -294,35 +264,24 @@
 </footer>
 
 <script>
-  // Flashs aléatoires (style flash appareil photo)
   const flash = document.getElementById('flashLayer');
-
   function triggerFlash(){
-    const x = Math.floor(10 + Math.random()*80) + "%";
-    const y = Math.floor(10 + Math.random()*55) + "%";
-    const x2 = Math.floor(10 + Math.random()*80) + "%";
-    const y2 = Math.floor(10 + Math.random()*55) + "%";
-
+    const x = Math.floor(20 + Math.random()*60) + "%";
+    const y = Math.floor(10 + Math.random()*40) + "%";
     flash.style.setProperty('--x', x);
     flash.style.setProperty('--y', y);
-    flash.style.setProperty('--x2', x2);
-    flash.style.setProperty('--y2', y2);
-
     flash.classList.remove('active');
-    void flash.offsetWidth; // relance animation
+    void flash.offsetWidth;
     flash.classList.add('active');
   }
-
-  // Fréquence : 1 flash toutes les 2 à 6 secondes
-  function schedule(){
-    const delay = 2000 + Math.random()*4000;
-    setTimeout(() => {
+  function loop(){
+    setTimeout(()=>{
       triggerFlash();
-      if (Math.random() < 0.25) setTimeout(triggerFlash, 180); // double flash parfois
-      schedule();
-    }, delay);
+      if(Math.random()<0.3) setTimeout(triggerFlash,120);
+      loop();
+    },1200 + Math.random()*2000);
   }
-  schedule();
+  loop();
 </script>
 
 </body>
