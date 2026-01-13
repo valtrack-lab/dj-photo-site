@@ -60,7 +60,7 @@
       100% { transform: translateY(-140px) translateX(90px) scale(1.3); }
     }
 
-    /* ================= LYRES ================= */
+    /* ================= LYRES (DÉSYNCHRONISÉES) ================= */
     .beams{
       position:absolute;
       inset:-120px;
@@ -69,15 +69,15 @@
       mix-blend-mode: screen;
       filter: saturate(1.9) contrast(1.25);
     }
+
     .beam{
       position:absolute;
       top:-140px;
       width:560px;
       height:1000px;
       transform-origin: top center;
-      animation: lyrePan .9s ease-in-out infinite alternate,
-                 lyrePulse .45s linear infinite;
     }
+
     .beam::before{
       content:"";
       position:absolute;
@@ -92,6 +92,7 @@
         );
       filter: blur(.6px);
     }
+
     .beam::after{
       content:"";
       position:absolute;
@@ -105,17 +106,59 @@
       filter: blur(18px);
     }
 
-    .b1{ left:18%; --c:255,60,140; }
-    .b2{ left:42%; --c:60,200,255; }
-    .b3{ left:66%; --c:160,90,255; }
+    /* positions + couleurs */
+    .b1{ left:14%; --c:255,60,140; }
+    .b2{ left:34%; --c:60,200,255; }
+    .b3{ left:54%; --c:160,90,255; }
+    .b4{ left:74%; --c:60,255,140; }
 
-    @keyframes lyrePan{
-      0%   { transform: rotate(-22deg); }
-      100% { transform: rotate(22deg); }
+    /* animations différentes = désynchro réelle */
+    .b1{
+      animation:
+        lyrePanA 0.85s ease-in-out infinite alternate,
+        lyrePulse 0.42s linear infinite;
+      animation-delay: 0s, .1s;
     }
+    .b2{
+      animation:
+        lyrePanB 1.15s ease-in-out infinite alternate,
+        lyrePulse 0.55s linear infinite;
+      animation-delay: .2s, .05s;
+    }
+    .b3{
+      animation:
+        lyrePanC 0.95s ease-in-out infinite alternate,
+        lyrePulse 0.48s linear infinite;
+      animation-delay: .35s, .2s;
+    }
+    .b4{
+      animation:
+        lyrePanD 1.35s ease-in-out infinite alternate,
+        lyrePulse 0.6s linear infinite;
+      animation-delay: .15s, .3s;
+    }
+
+    /* PAN / TILT différents */
+    @keyframes lyrePanA{
+      0%{ transform: rotate(-28deg); }
+      100%{ transform: rotate(22deg); }
+    }
+    @keyframes lyrePanB{
+      0%{ transform: rotate(18deg); }
+      100%{ transform: rotate(-24deg); }
+    }
+    @keyframes lyrePanC{
+      0%{ transform: rotate(-16deg); }
+      100%{ transform: rotate(30deg); }
+    }
+    @keyframes lyrePanD{
+      0%{ transform: rotate(26deg); }
+      100%{ transform: rotate(-20deg); }
+    }
+
     @keyframes lyrePulse{
       0%,100%{ opacity:.75; }
-      50%    { opacity:1; }
+      50%{ opacity:1; }
     }
 
     /* ================= LASERS MOBILES ================= */
@@ -136,8 +179,9 @@
       transform-origin: top center;
       filter: blur(.7px);
       opacity:.95;
-      animation: laserMove 0.6s ease-in-out infinite alternate,
-                 laserFlicker 0.25s linear infinite;
+      animation:
+        laserMove 0.6s ease-in-out infinite alternate,
+        laserFlicker 0.25s linear infinite;
     }
 
     .laser::after{
@@ -155,46 +199,39 @@
       opacity:.5;
     }
 
-    /* laser gauche */
     .laser.left{
       left:-30px;
-      --c: 0,255,120;
+      --c:0,255,120;
       background: linear-gradient(
         to bottom,
         rgba(0,255,120,0),
         rgba(0,255,120,1),
         rgba(0,255,120,0)
       );
-      box-shadow:
-        0 0 18px rgba(0,255,120,1),
-        0 0 45px rgba(0,255,120,.8);
-      animation-delay: 0s;
+      box-shadow:0 0 18px rgba(0,255,120,1),0 0 45px rgba(0,255,120,.8);
+      animation-delay: 0s, .12s;
     }
 
-    /* laser droite */
     .laser.right{
       right:-30px;
-      --c: 255,40,40;
+      --c:255,40,40;
       background: linear-gradient(
         to bottom,
         rgba(255,40,40,0),
         rgba(255,40,40,1),
         rgba(255,40,40,0)
       );
-      box-shadow:
-        0 0 18px rgba(255,40,40,1),
-        0 0 45px rgba(255,40,40,.8);
-      animation-delay: .15s;
+      box-shadow:0 0 18px rgba(255,40,40,1),0 0 45px rgba(255,40,40,.8);
+      animation-delay: .2s, .05s;
     }
 
     @keyframes laserMove{
-      0%   { transform: rotate(-35deg); }
-      100% { transform: rotate(35deg); }
+      0%{ transform: rotate(-40deg); }
+      100%{ transform: rotate(40deg); }
     }
-
     @keyframes laserFlicker{
-      0%   { opacity:.65; }
-      100% { opacity:1; }
+      0%{ opacity:.65; }
+      100%{ opacity:1; }
     }
 
     /* ================= FLASH PHOTO ================= */
@@ -217,18 +254,6 @@
       100%{opacity:0;}
     }
 
-    /* ================= PLATINES ================= */
-    .decks{
-      position:absolute;
-      left:50%;
-      bottom:-30px;
-      transform:translateX(-50%);
-      width:min(900px, 92vw);
-      opacity:.35;
-      mix-blend-mode: screen;
-      filter: saturate(1.3) contrast(1.2);
-    }
-
     /* ================= TEXTE ================= */
     .heroBox{
       position:relative;
@@ -242,30 +267,14 @@
       box-shadow:0 30px 90px rgba(0,0,0,.6);
     }
 
-    .brand{
-      font-size:42px;
-      font-weight:900;
-      margin-bottom:12px;
-    }
+    .brand{ font-size:42px; font-weight:900; margin-bottom:12px; }
     header h1{ margin:0; font-size:28px; }
     header p{ margin-top:12px; font-weight:600; }
 
-    /* ================= CONTENU ================= */
     section{
       max-width:1100px;
       margin:auto;
       padding:60px 20px;
-    }
-    .services{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-      gap:26px;
-    }
-    .card{
-      background:#020617;
-      padding:26px;
-      border-radius:16px;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
     }
     footer{
       text-align:center;
@@ -279,27 +288,21 @@
 <body>
 
 <header>
-  <!-- fumée -->
   <div class="smoke"></div>
 
-  <!-- lasers mobiles -->
   <div class="lasers">
     <div class="laser left"></div>
     <div class="laser right"></div>
   </div>
 
-  <!-- flash photo -->
   <div class="flash" id="flashLayer"></div>
 
-  <!-- lyres -->
   <div class="beams">
     <div class="beam b1"></div>
     <div class="beam b2"></div>
     <div class="beam b3"></div>
+    <div class="beam b4"></div>
   </div>
-
-  <!-- platines -->
-  <img class="decks" src="images/decks.png" alt="" onerror="this.style.display='none'">
 
   <div class="heroBox">
     <div class="brand">Valtrack, Son &amp; Lumière</div>
@@ -308,34 +311,19 @@
   </div>
 </header>
 
-<section>
-  <h2>Mes prestations</h2>
-  <div class="services">
-    <div class="card">🎧 DJ & Animation</div>
-    <div class="card">📸 Photographie</div>
-    <div class="card">✨ Packs DJ + Photo</div>
-  </div>
-</section>
-
 <footer>
   © 2026 – Valtrack, Son &amp; Lumière
 </footer>
 
 <script>
   const flash = document.getElementById('flashLayer');
-  function triggerFlash(){
-    const x = Math.floor(20 + Math.random()*60) + "%";
-    const y = Math.floor(10 + Math.random()*40) + "%";
-    flash.style.setProperty('--x', x);
-    flash.style.setProperty('--y', y);
-    flash.classList.remove('active');
-    void flash.offsetWidth;
-    flash.classList.add('active');
-  }
   (function loop(){
     setTimeout(()=>{
-      triggerFlash();
-      if(Math.random()<0.35) setTimeout(triggerFlash,120);
+      flash.style.setProperty('--x', (20+Math.random()*60)+'%');
+      flash.style.setProperty('--y', (10+Math.random()*40)+'%');
+      flash.classList.remove('active');
+      void flash.offsetWidth;
+      flash.classList.add('active');
       loop();
     },1100 + Math.random()*1700);
   })();
