@@ -1,18 +1,20 @@
 const burger = document.getElementById("burger");
 const mobileMenu = document.getElementById("mobileMenu");
 
-burger?.addEventListener("click", () => {
-  const open = mobileMenu.style.display === "block";
-  mobileMenu.style.display = open ? "none" : "block";
-  burger.setAttribute("aria-expanded", String(!open));
-});
-
-document.querySelectorAll("#mobileMenu a").forEach(a => {
-  a.addEventListener("click", () => {
-    mobileMenu.style.display = "none";
-    burger.setAttribute("aria-expanded", "false");
+if (burger && mobileMenu) {
+  burger.addEventListener("click", () => {
+    const open = mobileMenu.style.display === "block";
+    mobileMenu.style.display = open ? "none" : "block";
+    burger.setAttribute("aria-expanded", String(!open));
   });
-});
 
-document.getElementById("year").textContent = new Date().getFullYear();
+  document.querySelectorAll("#mobileMenu a").forEach((a) => {
+    a.addEventListener("click", () => {
+      mobileMenu.style.display = "none";
+      burger.setAttribute("aria-expanded", "false");
+    });
+  });
+}
 
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
