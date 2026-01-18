@@ -376,3 +376,53 @@ h1{
   border-radius: 18px;
   padding: 14px;
 }
+/* ====== CONTACT – ALIGNEMENT CENTRÉ ====== */
+
+/* Centre tout le contenu des cartes Contact */
+.contact__left,
+.contact__right {
+  text-align: center;
+}
+
+/* Centre les sous-cartes Devis / Rendez-vous */
+.contact__left > .panel,
+.contact__left > .card {
+  text-align: center;
+}
+
+/* Centre les boutons */
+.contact__left .btn,
+.contact__right .btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Centre les infos contact (tel, mail, zone) */
+.contact__left p,
+.contact__left a {
+  justify-content: center;
+}
+
+/* Centre les réseaux sociaux */
+.social {
+  justify-content: center;
+}
+
+/* Centre la liste Exemples d’événements */
+.contact__right ul {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+/* Avis Google – centre tout */
+.review-card {
+  text-align: center;
+}
+
+.review-top {
+  justify-content: center;
+}
+
+.review-hint {
+  text-align: center;
+}
