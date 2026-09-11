@@ -2,19 +2,29 @@ const burger = document.getElementById("burger");
 const mobileMenu = document.getElementById("mobileMenu");
 
 if (burger && mobileMenu) {
-  burger.addEventListener("click", () => {
-    const open = mobileMenu.style.display === "block";
-    mobileMenu.style.display = open ? "none" : "block";
-    burger.setAttribute("aria-expanded", String(!open));
+  function closeMenu() {
+    mobileMenu.classList.remove("is-open");
+    burger.setAttribute("aria-expanded", "false");
+  }
+
+  burger.addEventListener("click", function () {
+    const isOpen = mobileMenu.classList.toggle("is-open");
+    burger.setAttribute("aria-expanded", String(isOpen));
   });
 
-  document.querySelectorAll("#mobileMenu a").forEach((a) => {
-    a.addEventListener("click", () => {
-      mobileMenu.style.display = "none";
-      burger.setAttribute("aria-expanded", "false");
-    });
+  mobileMenu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 860) {
+      closeMenu();
+    }
   });
 }
 
 const yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
