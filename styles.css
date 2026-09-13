@@ -257,7 +257,7 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   .nav-wrap { min-height: 68px; }
   .brand-text small { display: none; }
   .hero { padding: 44px 0 70px; }
-  h1 { font-size: clamp(3rem, 15vw, 4.3rem); }
+  h1 { font-size: clamp(2.85rem, 14vw, 4.3rem); }
   .hero-lead { font-size: .98rem; }
   .hero-actions .btn { width: 100%; }
   .hero-points { gap: 10px; flex-direction: column; }
