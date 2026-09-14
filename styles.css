@@ -379,3 +379,102 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
     justify-content: flex-start;
   }
 }
+
+/* Version épurée : moins de répétitions, contenu principal recentré */
+.hero {
+  min-height: auto;
+}
+
+.hero-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
+
+.hero-copy-wide {
+  max-width: 980px;
+}
+
+.hero-copy-wide h1 {
+  max-width: 10ch;
+}
+
+.hero-copy-wide .hero-lead {
+  max-width: 900px;
+}
+
+.hero-event-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 22px 0 18px;
+}
+
+.hero-event-pills span {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #b9c3df;
+  background: rgba(255,255,255,.035);
+  font-size: .82rem;
+}
+
+.hero-support {
+  max-width: 900px;
+  color: var(--muted);
+  font-size: .96rem;
+}
+
+.hero-prestations-link {
+  margin-top: 4px;
+}
+
+.hero-visual-wide {
+  width: 100%;
+}
+
+.hero-visual-wide .visual-frame {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.pricing-grid .price-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-grid .price-card ul {
+  margin-bottom: 0;
+}
+
+.contact-compact {
+  display: grid;
+  grid-template-columns: .72fr 1.28fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.contact-compact-title h2 {
+  margin: 0;
+  max-width: 420px;
+}
+
+.contact-card-wide {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .contact-compact {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-stack {
+    gap: 28px;
+  }
+
+  .hero-event-pills span {
+    font-size: .78rem;
+  }
+}
