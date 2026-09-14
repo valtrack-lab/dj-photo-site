@@ -362,30 +362,24 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   .hero-frame-compact img { aspect-ratio: 1 / .78; }
 }
 
-/* CONTACT — Alignement strict sur la grille parent */
+/* CONTACT — Alignement parfait sur la grille des 3 cartes */
 .contact-section .contact-compact {
   display: flex !important;
   flex-direction: column !important;
-  align-items: stretch !important;
-  width: 100% !important;
+  /* On ne touche ni à width, ni à margin pour laisser .container centrer le bloc ! */
 }
 
 .contact-section .contact-compact-title {
-  width: 100% !important;
-  max-width: 100% !important;
   margin: 0 0 24px 0 !important;
 }
 
 .contact-section .contact-compact-title h2 {
   margin: 0 !important;
-  max-width: 100% !important;
 }
 
 .contact-section .contact-card-wide {
-  display: block !important;
   width: 100% !important;
   max-width: 100% !important;
-  margin: 0 !important;
-  align-self: stretch !important;
   box-sizing: border-box !important;
+  margin: 0 !important;
 }
