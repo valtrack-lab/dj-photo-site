@@ -564,28 +564,29 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   }
 }
 
-/* CONTACT — largeur finale */
+/* CONTACT — même largeur que le conteneur des cartes prestations */
 .contact-section .contact-compact {
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
-}
-
-.contact-section .contact-compact-title,
-.contact-section .contact-card-wide {
   width: 100% !important;
-  max-width: 900px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
 }
 
 .contact-section .contact-compact-title {
-  margin-bottom: 24px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 24px 0 !important;
 }
 
-@media (max-width: 940px) {
-  .contact-section .contact-compact-title,
-  .contact-section .contact-card-wide {
-    max-width: 100% !important;
-  }
+.contact-section .contact-compact-title h2 {
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+.contact-section .contact-card-wide {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  align-self: stretch !important;
 }
