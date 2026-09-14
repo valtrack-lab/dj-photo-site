@@ -448,26 +448,23 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 }
 
 .contact-compact {
-  display: grid;
-  grid-template-columns: .72fr 1.28fr;
-  gap: 44px;
-  align-items: start;
+  display: block;
+}
+
+.contact-compact-title {
+  margin-bottom: 24px;
 }
 
 .contact-compact-title h2 {
   margin: 0;
-  max-width: 420px;
+  max-width: none;
 }
 
 .contact-card-wide {
   width: 100%;
 }
 
-@media (max-width: 900px) {
-  .contact-compact {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 @media (max-width: 720px) {
   .hero-stack {
