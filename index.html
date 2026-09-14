@@ -1,248 +1,200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valtrack Sons et Lumières</title>
-  <meta
-    name="description"
-    content="DJ, sonorisation, éclairage et photographie événementielle pour mariages, anniversaires, baptêmes et soirées privées."
-  />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VALTRACK Sons et Lumières — DJ, Sonorisation & Photographie</title>
+  <meta name="description" content="DJ, sonorisation, éclairage et photographie événementielle pour mariages, anniversaires, baptêmes, soirées privées et événements professionnels." />
+  <meta name="theme-color" content="#070812" />
+  <meta property="og:title" content="VALTRACK Sons et Lumières" />
+  <meta property="og:description" content="DJ • Sonorisation • Éclairage • Photographie événementielle" />
+  <meta property="og:image" content="dj.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <header class="site-header">
+  <header class="site-header" id="top">
     <div class="container nav-wrap">
-      <a class="brand" href="#accueil">
-        <span class="brand-mark">V</span>
+      <a class="brand" href="#top" aria-label="Retour à l'accueil">
+        <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-text">
           <strong>VALTRACK</strong>
           <small>Sons et Lumières</small>
         </span>
       </a>
 
-      <nav class="main-nav">
-        <a href="#accueil">Accueil</a>
-        <a href="#dj">DJ</a>
-        <a href="#photo">Photographie</a>
-        <a href="#packs-duo">Packs Duo</a>
+      <nav class="desktop-nav" aria-label="Navigation principale">
+        <a href="#prestations">Prestations</a>
+        <a href="#evenements">Événements</a>
         <a href="#contact">Contact</a>
+        <a class="btn btn-primary btn-small" href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog" target="_blank" rel="noopener">Demander un devis</a>
       </nav>
+
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+
+    <nav class="mobile-nav" id="mobileMenu" aria-label="Navigation mobile">
+      <div class="container mobile-nav-inner">
+        <a href="#prestations">Prestations</a>
+        <a href="#evenements">Événements</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog" target="_blank" rel="noopener">Demander un devis</a>
+      </div>
+    </nav>
   </header>
 
   <main>
-    <section class="hero" id="accueil">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-glow glow-one"></div>
+      <div class="hero-glow glow-two"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="section-kicker">DJ • SONORISATION • PHOTOGRAPHIE</span>
-
-          <h1 id="hero-title">
-            Donnez vie à <em>votre événement.</em>
-          </h1>
-
-          <p class="hero-text">
-            Sonorisation, éclairage, animation DJ et photographie pour vos
-            mariages, anniversaires, baptêmes et soirées privées.
-          </p>
-
+          <p class="eyebrow"><span></span> DJ • SONORISATION • ÉCLAIRAGE • PHOTO</p>
+          <h1 id="hero-title">Donnez vie à <em>votre événement.</em></h1>
+          <p class="hero-lead">Une ambiance qui vous ressemble, un son maîtrisé et des souvenirs à garder. VALTRACK accompagne vos mariages, anniversaires, baptêmes, soirées privées et événements professionnels.</p>
           <div class="hero-actions">
-            <a
-              class="btn btn-primary"
-              href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog"
-              target="_blank"
-              rel="noopener"
-            >
-              Demander un devis <span>↗</span>
-            </a>
-
-            <a class="btn btn-secondary" href="#dj">
-              Voir les prestations
-            </a>
+            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog" target="_blank" rel="noopener">Demander un devis <span>↗</span></a>
+            <a class="btn btn-secondary" href="#prestations">Voir les prestations</a>
+          </div>
+          <div class="hero-points" aria-label="Points forts">
+            <span>✓ Formules claires</span>
+            <span>✓ Prestation adaptée</span>
+            <span>✓ Devis sur demande</span>
           </div>
         </div>
 
-        <div class="hero-visual">
-          <img src="dj.png" alt="DJ Valtrack Sons et Lumières" />
+        <div class="hero-visual" aria-label="Illustration DJ et photographie événementielle">
+          <div class="visual-frame">
+            <img src="dj.png" alt="DJ derrière une régie avec éclairages et photographes lors d'un événement" />
+            <div class="visual-shade"></div>
+            <div class="visual-label">
+              <span>VALTRACK</span>
+              <strong>Votre soirée. Votre ambiance.</strong>
+            </div>
+          </div>
         </div>
+      </div>
+      <a class="scroll-cue" href="#prestations" aria-label="Découvrir les prestations">↓</a>
+    </section>
+
+    <section class="section intro-strip">
+      <div class="container intro-grid">
+        <div>
+          <span class="section-kicker">VALTRACK SONS ET LUMIÈRES</span>
+          <h2>Une seule adresse pour l’ambiance et les souvenirs.</h2>
+        </div>
+        <p>Besoin simplement de sonoriser votre événement, d’ajouter une vraie ambiance lumineuse, de confier l’animation à un DJ ou de garder une trace photographique de la journée ? Choisissez la formule qui correspond à votre projet.</p>
       </div>
     </section>
 
-    <section class="section" id="dj">
+    <section class="section section-dark" id="prestations">
       <div class="container">
         <div class="section-heading">
           <div>
-            <span class="section-kicker">SONORISATION & DJ</span>
-            <h2>Une formule adaptée à chaque événement.</h2>
+            <span class="section-kicker">SONORISATION / DJ</span>
+            <h2>Trois niveaux, une ambiance à votre mesure.</h2>
           </div>
-
-          <p>
-            De la simple sonorisation à la prestation DJ complète avec
-            éclairage, effets et animation.
-          </p>
+          <p>Des formules simples pour partir sur une base claire. Les besoins particuliers peuvent être étudiés sur devis.</p>
         </div>
 
         <div class="pricing-grid">
           <article class="price-card">
             <div class="price-top">
               <span class="pack-number">01</span>
-              <span class="pack-tag">Sono</span>
+              <span class="pack-tag">Essentiel</span>
             </div>
-
             <h3>Basique</h3>
             <p class="price"><span>250</span> €</p>
-            <p class="price-subtitle">Sonorisation uniquement</p>
-
+            <p class="price-subtitle">Sonorisation de votre événement</p>
             <ul>
-              <li>Solution de sonorisation adaptée</li>
-              <li>Installation et démontage inclus</li>
-              <li>Micros, écran ou matériel complémentaire selon besoin</li>
+              <li>Solution de sonorisation</li>
+              <li>Installation et démontage</li>
+              <li>Micro(s) ou écran selon besoin</li>
             </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
+            <a href="#contact" class="text-link">Parler de mon événement <span>→</span></a>
           </article>
 
           <article class="price-card featured-card">
             <div class="featured-glow"></div>
-
             <div class="price-top">
               <span class="pack-number">02</span>
-              <span class="pack-tag accent">Sono</span>
+              <span class="pack-tag accent">Ambiance</span>
             </div>
-
             <h3>Ambiance</h3>
             <p class="price"><span>350</span> €</p>
-            <p class="price-subtitle">
-              Sonorisation + éclairage
-            </p>
-
+            <p class="price-subtitle">Sonorisation + éclairage</p>
             <ul>
-              <li>Sonorisation de l'événement</li>
-              <li>Jeux de lumière</li>
-              <li>Machines à effets</li>
-              <li>Installation et démontage inclus</li>
+              <li>Sonorisation complète</li>
+              <li>Jeux de lumière et effets</li>
+              <li>Installation adaptée au lieu</li>
             </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
+            <a href="#contact" class="text-link">Parler de mon événement <span>→</span></a>
           </article>
 
           <article class="price-card premium-card">
             <div class="price-top">
               <span class="pack-number">03</span>
-              <span class="pack-tag">DJ</span>
+              <span class="pack-tag">Complet</span>
             </div>
-
             <h3>Event</h3>
             <p class="price"><span>500</span> €</p>
-            <p class="price-subtitle">
-              Sonorisation + éclairage + animation
-            </p>
-
+            <p class="price-subtitle">Sonorisation + éclairage + animation</p>
             <ul>
               <li>Prestation DJ complète</li>
-              <li>Animation de l'événement</li>
-              <li>Sonorisation, éclairage et effets</li>
-              <li>Installation et démontage inclus</li>
+              <li>Animation musicale</li>
+              <li>Son, lumières et effets</li>
             </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
+            <a href="#contact" class="text-link">Parler de mon événement <span>→</span></a>
           </article>
         </div>
 
-        <div class="extras-bar">
-          <span>Heure supplémentaire : 70 €/h</span>
-          <span>Au-delà de 30 km : 0,70 €/km supplémentaire</span>
-        </div>
+        <p class="pricing-note">Heure supplémentaire : 70 €/h • Déplacement au-delà de 30 km : 0,70 €/km supplémentaire, calcul aller-retour.</p>
       </div>
     </section>
 
-    <section class="section section-alt" id="photo">
+    <section class="section photo-section">
       <div class="container">
-        <div class="section-heading">
-          <div>
+        <div class="photo-layout">
+          <div class="photo-copy">
             <span class="section-kicker">PHOTOGRAPHIE</span>
-            <h2>Gardez un souvenir de votre événement.</h2>
+            <h2>Gardez les moments qui comptent.</h2>
+            <p>Une approche simple et naturelle pour photographier votre événement et vous remettre les images directement sur clé USB.</p>
+            <div class="photo-callout">
+              <strong>Pas de galerie publique.</strong>
+              <span>Vos photos sont remises directement après traitement selon la prestation prévue.</span>
+            </div>
           </div>
 
-          <p>
-            Couverture photographique avec remise des photos sur clé USB et
-            possibilité de tirages papier.
-          </p>
-        </div>
-
-        <div class="pricing-grid">
-          <article class="price-card">
-            <div class="price-top">
-              <span class="pack-number">01</span>
-              <span class="pack-tag">Photo</span>
+          <div class="photo-packs">
+            <article class="photo-pack">
+              <div>
+                <span class="photo-pack-name">Numérique</span>
+                <p>Toutes les photos sur clé USB</p>
+              </div>
+              <strong>250 €</strong>
+            </article>
+            <article class="photo-pack">
+              <div>
+                <span class="photo-pack-name">Standard</span>
+                <p>20 tirages 10 × 15 + toutes les photos sur clé USB</p>
+              </div>
+              <strong>350 €</strong>
+            </article>
+            <article class="photo-pack photo-pack-featured">
+              <div>
+                <span class="photo-pack-name">Premium</span>
+                <p>50 tirages 10 × 15 + toutes les photos sur clé USB</p>
+              </div>
+              <strong>450 €</strong>
+            </article>
+            <div class="photo-extras">
+              <span>Tirage 10 × 15 : 3 € / photo</span>
+              <span>Tirage A4 : 10 € / photo</span>
+              <span>Heure supplémentaire : 50 €/h</span>
+              <span>Déplacement : 0,70 €/km</span>
             </div>
-
-            <h3>Numérique</h3>
-            <p class="price"><span>250</span> €</p>
-
-            <ul>
-              <li>Couverture photo de l'événement</li>
-              <li>Clé USB avec toutes les photos incluse</li>
-            </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
-          </article>
-
-          <article class="price-card featured-card">
-            <div class="featured-glow"></div>
-
-            <div class="price-top">
-              <span class="pack-number">02</span>
-              <span class="pack-tag accent">Photo</span>
-            </div>
-
-            <h3>Standard</h3>
-            <p class="price"><span>350</span> €</p>
-
-            <ul>
-              <li>Couverture photo de l'événement</li>
-              <li>Clé USB avec toutes les photos incluse</li>
-              <li>20 tirages 10 × 15 cm inclus</li>
-            </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
-          </article>
-
-          <article class="price-card premium-card">
-            <div class="price-top">
-              <span class="pack-number">03</span>
-              <span class="pack-tag">Photo</span>
-            </div>
-
-            <h3>Premium</h3>
-            <p class="price"><span>450</span> €</p>
-
-            <ul>
-              <li>Couverture photo de l'événement</li>
-              <li>Clé USB avec toutes les photos incluse</li>
-              <li>50 tirages 10 × 15 cm inclus</li>
-            </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
-          </article>
-        </div>
-
-        <div class="extras-bar">
-          <span>Tirage 10 × 15 : 3 € / photo</span>
-          <span>Tirage A4 : 10 € / photo</span>
+          </div>
         </div>
       </div>
     </section>
@@ -251,17 +203,10 @@
       <div class="container">
         <div class="section-heading duo-heading">
           <div>
-            <span class="section-kicker">
-              PACKS DUO • SONORISATION + PHOTOGRAPHIE
-            </span>
-
-            <h2>L'ambiance et les souvenirs dans une seule formule.</h2>
+            <span class="section-kicker">PACKS DUO • SONORISATION + PHOTOGRAPHIE</span>
+            <h2>L’ambiance et les souvenirs dans une seule formule.</h2>
           </div>
-
-          <p>
-            Trois packs réunissant sonorisation / DJ et photographie, avec un
-            tarif avantageux par rapport aux prestations prises séparément.
-          </p>
+          <p>Trois packs réunissant sonorisation / DJ et photographie, avec un tarif avantageux par rapport aux prestations prises séparément.</p>
         </div>
 
         <div class="pricing-grid duo-pricing-grid">
@@ -270,57 +215,36 @@
               <span class="pack-number">01</span>
               <span class="pack-tag">Duo</span>
             </div>
-
             <h3>Digital</h3>
             <p class="price"><span>450</span> €</p>
-            <p class="duo-old-price">
-              au lieu de 500 € au détail
-            </p>
-
-            <p class="price-subtitle">
-              Pack Sono Basique + Pack Photo Numérique
-            </p>
-
+            <p class="duo-old-price">au lieu de 500 € au détail</p>
+            <p class="price-subtitle">Pack Sono Basique + Pack Photo Numérique</p>
             <ul>
               <li>Sonorisation adaptée</li>
               <li>Installation et démontage inclus</li>
               <li>Couverture photo</li>
               <li>Clé USB avec toutes les photos</li>
             </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
+            <a href="#contact" class="text-link">Parler de mon événement <span>→</span></a>
           </article>
 
           <article class="price-card featured-card">
             <div class="featured-glow"></div>
-
             <div class="price-top">
               <span class="pack-number">02</span>
               <span class="pack-tag accent">Duo</span>
             </div>
-
             <h3>Print</h3>
             <p class="price"><span>600</span> €</p>
-            <p class="duo-old-price">
-              au lieu de 700 € au détail
-            </p>
-
-            <p class="price-subtitle">
-              Pack Sono Ambiance + Pack Photo Standard
-            </p>
-
+            <p class="duo-old-price">au lieu de 700 € au détail</p>
+            <p class="price-subtitle">Pack Sono Ambiance + Pack Photo Standard</p>
             <ul>
               <li>Sonorisation, éclairage, jeux de lumière et effets</li>
               <li>Installation et démontage inclus</li>
               <li>Couverture photo + clé USB</li>
               <li>20 tirages 10 × 15 cm</li>
             </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
+            <a href="#contact" class="text-link">Parler de mon événement <span>→</span></a>
           </article>
 
           <article class="price-card premium-card">
@@ -328,30 +252,17 @@
               <span class="pack-number">03</span>
               <span class="pack-tag">Duo</span>
             </div>
-
             <h3>Prestige</h3>
             <p class="price"><span>800</span> €</p>
-            <p class="duo-old-price">
-              au lieu de 950 € au détail
-            </p>
-
-            <p class="price-subtitle">
-              Pack Sono Event + Pack Photo Premium
-            </p>
-
+            <p class="duo-old-price">au lieu de 950 € au détail</p>
+            <p class="price-subtitle">Pack Sono Event + Pack Photo Premium</p>
             <ul>
-              <li>
-                Prestation DJ complète, animation, sonorisation, éclairage et
-                effets
-              </li>
+              <li>Prestation DJ complète, animation, sonorisation, éclairage et effets</li>
               <li>Installation et démontage inclus</li>
               <li>Couverture photo + clé USB</li>
               <li>50 tirages 10 × 15 cm</li>
             </ul>
-
-            <a href="#contact" class="text-link">
-              Choisir ce pack <span>→</span>
-            </a>
+            <a href="#contact" class="text-link">Parler de mon événement <span>→</span></a>
           </article>
         </div>
 
@@ -359,90 +270,76 @@
           <span>Photo 10 × 15 : 3 € / photo</span>
           <span>Photo A4 : 10 € / photo</span>
           <span>Heure supplémentaire : 70 €/h</span>
-          <span>
-            Au-delà de 30 km : 0,70 €/km supplémentaire (aller-retour)
-          </span>
+          <span>Au-delà de 30 km : 0,70 €/km supplémentaire, calcul aller-retour</span>
         </div>
 
-        <div class="duo-cta">
-          <a
-            class="btn btn-primary"
-            href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog"
-            target="_blank"
-            rel="noopener"
-          >
-            Faire ma demande <span>↗</span>
-          </a>
+        <div class="duo-actions">
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog" target="_blank" rel="noopener">Faire ma demande <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-events" id="evenements">
+      <div class="container">
+        <div class="section-heading events-heading">
+          <div>
+            <span class="section-kicker">POUR VOS ÉVÉNEMENTS</span>
+            <h2>Une prestation pensée pour votre moment.</h2>
+          </div>
+        </div>
+        <div class="event-grid">
+          <article><span>💍</span><h3>Mariages</h3><p>De l’ambiance musicale aux moments forts de la soirée.</p></article>
+          <article><span>🎂</span><h3>Anniversaires</h3><p>Un format adapté à votre public, votre lieu et vos envies.</p></article>
+          <article><span>✨</span><h3>Baptêmes</h3><p>Sonorisation, ambiance et photographie pour réunir vos proches.</p></article>
+          <article><span>🎉</span><h3>Soirées privées</h3><p>Une installation dimensionnée pour faire vivre votre soirée.</p></article>
+          <article><span>🏢</span><h3>Événements pro</h3><p>Son, lumière et animation pour vos rendez-vous professionnels.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section contact-section" id="contact">
-      <div class="container contact-grid">
-        <div>
-          <span class="section-kicker">CONTACT</span>
-
-          <h2>Parlons de votre événement.</h2>
-
-          <p>
-            Mariage, anniversaire, baptême ou soirée privée : transmettez-moi
-            votre demande afin de préparer une prestation adaptée.
-          </p>
+      <div class="container contact-shell">
+        <div class="contact-copy">
+          <span class="section-kicker">VOTRE PROJET</span>
+          <h2>Parlez-moi de votre événement.</h2>
+          <p>Envoyez les premières informations via le formulaire. Je pourrai ensuite étudier votre demande et revenir vers vous avec une prestation adaptée.</p>
+          <a class="btn btn-primary btn-large" href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog" target="_blank" rel="noopener">Ouvrir le formulaire de demande <span>↗</span></a>
+          <p class="form-note">L’envoi du formulaire ne constitue pas une réservation définitive.</p>
         </div>
 
-        <div class="contact-actions">
-          <a
-            class="btn btn-primary"
-            href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog"
-            target="_blank"
-            rel="noopener"
-          >
-            Demander un devis <span>↗</span>
-          </a>
-
-          <a href="mailto:contact@valtracksonsetlumieres.com">
-            contact@valtracksonsetlumieres.com
-          </a>
-
-          <a href="tel:+33743680300">
-            07 43 68 03 00
-          </a>
-        </div>
+        <aside class="contact-card">
+          <div class="contact-item">
+            <span class="contact-icon">✆</span>
+            <div><small>Téléphone</small><a href="tel:+33743680300">07 43 68 03 00</a></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉</span>
+            <div><small>E-mail</small><a href="mailto:contact@valtracksonsetlumieres.com">contact@valtracksonsetlumieres.com</a></div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">⌖</span>
+            <div><small>Zone</small><strong>Hauts-de-France</strong></div>
+          </div>
+          <hr />
+          <a class="contact-secondary" href="https://calendar.app.google/k3B2UKcsfXhyxnpeA" target="_blank" rel="noopener">Réserver un créneau <span>→</span></a>
+          <a class="contact-secondary" href="https://g.page/r/CfVVuxEBxh3PEAE/review" target="_blank" rel="noopener">Laisser un avis Google <span>→</span></a>
+          <div class="social-row">
+            <a href="https://www.instagram.com/valtrack_/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+            <a href="https://www.tiktok.com/@v4ltrack" target="_blank" rel="noopener" aria-label="TikTok">TikTok</a>
+            <a href="https://www.facebook.com/profile.php?id=61594022202695" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+          </div>
+        </aside>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-wrap">
-      <p>
-        VALTRACK Sons et Lumières – DJ & Photographe événementiel
-      </p>
-
-      <div class="social-links">
-        <a
-          href="https://www.instagram.com/valtrack_/"
-          target="_blank"
-          rel="noopener"
-        >
-          Instagram
-        </a>
-
-        <a
-          href="https://www.tiktok.com/@v4ltrack"
-          target="_blank"
-          rel="noopener"
-        >
-          TikTok
-        </a>
-
-        <a
-          href="https://www.facebook.com/profile.php?id=61594022202695"
-          target="_blank"
-          rel="noopener"
-        >
-          Facebook
-        </a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div><strong>VALTRACK Sons et Lumières</strong><small>DJ & Photographe événementiel</small></div>
       </div>
+      <p>© <span id="year"></span> VALTRACK Sons et Lumières. Tous droits réservés.</p>
     </div>
   </footer>
 
