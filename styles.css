@@ -297,23 +297,6 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   min-height: 485px;
 }
 
-.duo-fees {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 12px;
-  margin-top: 26px;
-}
-
-.duo-fees span {
-  padding: 10px 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255,255,255,.04);
-  color: var(--muted);
-  font-size: .86rem;
-}
-
 .duo-actions {
   display: flex;
   justify-content: center;
@@ -321,11 +304,78 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 }
 
 @media (max-width: 720px) {
-  .duo-fees {
-    justify-content: flex-start;
-  }
-
   .duo-actions .btn {
     width: 100%;
+  }
+}
+
+/* Tarifs complémentaires — même rendu en petites bulles partout */
+.fee-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.fee-pills span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: #8f99ba;
+  font-size: .76rem;
+  background: transparent;
+}
+
+/* Photographie — cartes identiques aux prestations DJ */
+.photo-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-section::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  right: -300px;
+  top: 60px;
+  background: rgba(255,79,163,.11);
+  filter: blur(34px);
+  pointer-events: none;
+}
+
+.photo-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.photo-pricing-grid .price-card {
+  min-height: 440px;
+}
+
+.photo-retention-note {
+  margin-top: 26px;
+  padding: 18px 20px;
+  border-left: 2px solid var(--pink);
+  background: rgba(255,255,255,.035);
+  border-radius: 0 16px 16px 0;
+}
+
+.photo-retention-note strong,
+.photo-retention-note span {
+  display: block;
+}
+
+.photo-retention-note span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+@media (max-width: 720px) {
+  .fee-pills {
+    justify-content: flex-start;
   }
 }
