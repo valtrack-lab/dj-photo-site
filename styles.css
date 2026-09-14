@@ -383,3 +383,33 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   box-sizing: border-box !important;
   margin: 0 !important;
 }
+
+
+/* Lien Mentions légales dans le footer */
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.footer-legal p {
+  margin: 0;
+}
+
+.footer-legal a {
+  color: #717b9a;
+  font-size: .79rem;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--cyan);
+}
+
+@media (max-width: 560px) {
+  .footer-legal {
+    align-items: flex-start;
+  }
+}
