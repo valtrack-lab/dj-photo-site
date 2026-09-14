@@ -448,10 +448,13 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 }
 
 .contact-compact {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .contact-compact-title {
+  width: 100%;
   margin-bottom: 24px;
 }
 
@@ -462,6 +465,7 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 
 .contact-card-wide {
   width: 100%;
+  max-width: none;
 }
 
 
