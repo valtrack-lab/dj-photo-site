@@ -51,18 +51,29 @@ button, a { -webkit-tap-highlight-color: transparent; }
   backdrop-filter: blur(18px);
 }
 .nav-wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
-.brand-mark {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--cyan), var(--blue) 50%, var(--pink));
-  box-shadow: 0 0 24px rgba(22,224,255,.55), 0 0 42px rgba(255,79,163,.22);
-  flex: 0 0 auto;
+
+/* BRAND & LOGO (Fixé) */
+.brand { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 12px; 
+  min-width: 0; 
+  flex-shrink: 0;
 }
+
+.brand-logo {
+  height: 38px;
+  max-height: 38px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .brand-text { display: flex; flex-direction: column; line-height: 1.05; letter-spacing: .02em; }
 .brand-text strong { font-size: 1rem; }
 .brand-text small { color: var(--muted); margin-top: 4px; font-size: .72rem; }
+
 .desktop-nav { display: flex; align-items: center; gap: 28px; font-size: .95rem; }
 .desktop-nav > a:not(.btn) { color: #dfe4fa; transition: color .2s ease; }
 .desktop-nav > a:not(.btn):hover { color: var(--cyan); }
@@ -366,7 +377,6 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .contact-section .contact-compact {
   display: flex !important;
   flex-direction: column !important;
-  /* On ne touche ni à width, ni à margin pour laisser .container centrer le bloc ! */
 }
 
 .contact-section .contact-compact-title {
@@ -383,7 +393,6 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   box-sizing: border-box !important;
   margin: 0 !important;
 }
-
 
 /* Lien Mentions légales dans le footer */
 .footer-legal {
@@ -412,10 +421,4 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   .footer-legal {
     align-items: flex-start;
   }
-  
-}
-.brand-logo {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
 }
