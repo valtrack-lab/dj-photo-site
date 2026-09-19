@@ -4,10 +4,10 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VALTRACK Sons et Lumières — DJ, Sonorisation & Photographie</title>
+  <title>VALTRACK Sons et Lumières — Accueil</title>
   <meta name="description" content="DJ, sonorisation, éclairage et photographie événementielle pour mariages, anniversaires, baptêmes, soirées privées et événements professionnels." />
   <meta name="theme-color" content="#070812" />
-  <meta property="og:title" content="VALTRACK Sons et Lumières" />
+  <meta property="og:title" content="VALTRACK Sons et Lumières — Accueil" />
   <meta property="og:description" content="DJ • Sonorisation • Éclairage • Photographie événementielle" />
   <meta property="og:image" content="dj.png" />
   <link rel="stylesheet" href="styles.css?v=20260914-final-contact" />
@@ -15,7 +15,7 @@
 <body>
   <header class="site-header" id="top">
     <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Retour à l'accueil">
+      <a class="brand" href="index.html" aria-label="Retour à l'accueil">
         <img src="logo.png" alt="Logo VALTRACK" class="brand-logo" />
         <span class="brand-text">
           <strong>VALTRACK</strong>
@@ -24,9 +24,9 @@
       </a>
 
       <nav class="desktop-nav" aria-label="Navigation principale">
-        <a href="#prestations">Sonorisation</a>
-        <a href="#photographie">Photographie</a>
-        <a href="#packs-duo">Sono + Photo</a>
+        <a href="index.html" class="active">Accueil</a>
+        <a href="prestations.html">Prestations & Tarifs</a>
+        <a href="materiel.html">Matériel & Galerie</a>
         <a href="#contact">Contact</a>
         <a class="btn btn-primary btn-small" href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog" target="_blank" rel="noopener">Demander un devis</a>
       </nav>
@@ -37,9 +37,9 @@
 
     <nav class="mobile-nav" id="mobileMenu" aria-label="Navigation mobile">
       <div class="container mobile-nav-inner">
-        <a href="#prestations">Sonorisation</a>
-        <a href="#photographie">Photographie</a>
-        <a href="#packs-duo">Sono + Photo</a>
+        <a href="index.html">Accueil</a>
+        <a href="prestations.html">Prestations & Tarifs</a>
+        <a href="materiel.html">Matériel & Galerie</a>
         <a href="#contact">Contact</a>
         <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScfLBXGqjbS6cImaduYG_g-oRKf7EmqATWuRvP31iIH8ll3yA/viewform?usp=dialog" target="_blank" rel="noopener">Demander un devis</a>
       </div>
@@ -47,6 +47,7 @@
   </header>
 
   <main>
+    <!-- HERO SECTION -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-glow glow-one"></div>
       <div class="hero-glow glow-two"></div>
@@ -56,7 +57,7 @@
           <p class="eyebrow"><span></span> DJ • SONORISATION • ÉCLAIRAGE • PHOTO</p>
 
           <h1 id="hero-title" class="hero-title-one-line">
-            Donnez vie à <em>votre événement ! </em>
+            Donnez vie à <em>votre événement !</em>
           </h1>
 
           <div class="hero-visual hero-visual-inline" aria-label="Illustration DJ et photographie événementielle">
@@ -107,231 +108,81 @@
           </div>
         </div>
       </div>
-
-      <a class="scroll-cue" href="#prestations" aria-label="Découvrir les prestations">↓</a>
     </section>
 
-    <section class="section section-dark" id="prestations">
+    <!-- SECTION AVIS CLIENTS -->
+    <section class="section section-dark" id="avis">
       <div class="container">
         <div class="section-heading">
           <div>
-            <span class="section-kicker">SONORISATION / DJ</span>
-            <h2>Trois niveaux, une ambiance à votre mesure.</h2>
+            <span class="section-kicker">TÉMOIGNAGES</span>
+            <h2>Ce que disent nos clients.</h2>
           </div>
-          <p>Des formules simples pour partir sur une base claire. Les besoins particuliers peuvent être études sur devis.</p>
+          <p>La satisfaction de nos clients est notre meilleure publicité.</p>
         </div>
 
         <div class="pricing-grid">
           <article class="price-card">
-            <div class="price-top">
-              <span class="pack-number">01</span>
-              <span class="pack-tag">Sono</span>
-            </div>
-            <h3>Basique</h3>
-            <p class="price"><span>250</span> €</p>
-            <p class="price-subtitle">Sonorisation de votre événement</p>
-            <ul>
-              <li>Solution de sonorisation</li>
-              <li>Installation et démontage</li>
-              <li>Micro(s) ou écran selon besoin</li>
-            </ul>
+            <p style="color: #ffb703; font-size: 1.2rem; margin-bottom: 8px;">★★★★★</p>
+            <p style="font-style: italic; margin-bottom: 16px;">« Une prestation au top pour mon anniversaire ! L'ambiance lumineuse et le son étaient parfaits. Tous les invités ont adoré. »</p>
+            <strong>— Julien R.</strong>
+            <small style="display: block; opacity: 0.7;">Anniversaire privé</small>
           </article>
 
           <article class="price-card featured-card">
             <div class="featured-glow"></div>
-            <div class="price-top">
-              <span class="pack-number">02</span>
-              <span class="pack-tag accent">Sono</span>
-            </div>
-            <h3>Ambiance</h3>
-            <p class="price"><span>350</span> €</p>
-            <p class="price-subtitle">Sonorisation + éclairage</p>
-            <ul>
-              <li>Sonorisation complète</li>
-              <li>Jeux de lumière et effets</li>
-              <li>Installation adaptée au lieu</li>
-            </ul>
+            <p style="color: #ffb703; font-size: 1.2rem; margin-bottom: 8px;">★★★★★</p>
+            <p style="font-style: italic; margin-bottom: 16px;">« Un grand merci à VALTRACK pour notre mariage. Animation très professionnelle, à l'écoute de nos demandes. Je recommande sans hésiter ! »</p>
+            <strong>— Sophie & Marc</strong>
+            <small style="display: block; opacity: 0.7;">Mariage</small>
           </article>
 
-          <article class="price-card premium-card">
-            <div class="price-top">
-              <span class="pack-number">03</span>
-              <span class="pack-tag">Sono</span>
-            </div>
-            <h3>Event</h3>
-            <p class="price"><span>500</span> €</p>
-            <p class="price-subtitle">Sonorisation + éclairage + animation</p>
-            <ul>
-              <li>Prestation DJ complète</li>
-              <li>Animation / jeux</li>
-              <li>Son, lumières et effets</li>
-            </ul>
+          <article class="price-card">
+            <p style="color: #ffb703; font-size: 1.2rem; margin-bottom: 8px;">★★★★★</p>
+            <p style="font-style: italic; margin-bottom: 16px;">« Matériel très propre et rendu photo super sympa récupéré sur clé USB. Très bon rapport qualité/prix ! »</p>
+            <strong>— Thomas L.</strong>
+            <small style="display: block; opacity: 0.7;">Soirée d'entreprise</small>
           </article>
-        </div>
-
-        <div class="fee-pills">
-          <span>Heure supplémentaire : 70 €/h</span>
-          <span>30 km inclus (puis 0,70 €/km supplémentaire)</span>
-          <span>Calcul du kilométrage : aller-retour</span>
         </div>
       </div>
     </section>
 
-    <section class="section photo-section" id="photographie">
+    <!-- SECTION FAQ -->
+    <section class="section" id="faq">
       <div class="container">
         <div class="section-heading">
           <div>
-            <span class="section-kicker">PHOTOGRAPHIE</span>
-            <h2>Gardez les moments qui comptent.</h2>
+            <span class="section-kicker">QUESTIONS FRÉQUENTES</span>
+            <h2>Vous avez des questions ?</h2>
           </div>
-          <p>Une approche simple et naturelle pour photographier votre événement et vous remettre les images directement sur clé USB.</p>
+          <p>Voici les réponses aux demandes les plus courantes.</p>
         </div>
 
-        <div class="pricing-grid photo-pricing-grid">
-          <article class="price-card">
-            <div class="price-top">
-              <span class="pack-number">01</span>
-              <span class="pack-tag">Photo</span>
-            </div>
-            <h3>Numérique</h3>
-            <p class="price"><span>250</span> €</p>
-            <p class="price-subtitle">Toutes les photos sur clé USB</p>
-            <ul>
-              <li>Couverture photo de l'événement (jusqu'à 4h de présence)</li>
-              <li>Toutes les photos remises sur clé USB</li>
-              <li>Rendu authentique et naturel (sans retouche artificielle)</li>
-            </ul>
-          </article>
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto;">
+          <details class="price-card" style="cursor: pointer;">
+            <summary style="font-weight: bold; font-size: 1.1rem; outline: none;">Jusqu'où vous déplacez-vous ?</summary>
+            <p style="margin-top: 12px; opacity: 0.9;">Nous intervenons principalement dans toute la région <strong>Hauts-de-France</strong>. 30 km aller-retour sont inclus dans nos formules, puis 0,70 €/km supplémentaire.</p>
+          </details>
 
-          <article class="price-card featured-card">
-            <div class="featured-glow"></div>
-            <div class="price-top">
-              <span class="pack-number">02</span>
-              <span class="pack-tag accent">Photo</span>
-            </div>
-            <h3>Standard</h3>
-            <p class="price"><span>350</span> €</p>
-            <p class="price-subtitle">Clé USB + 20 tirages 10 × 15 cm</p>
-            <ul>
-              <li>Couverture photo de l'événement (jusqu'à 4h de présence)</li>
-              <li>Toutes les photos remises sur clé USB</li>
-              <li>Rendu authentique et naturel (sans retouche artificielle)</li>
-              <li>20 tirages 10 × 15 cm inclus (imprimés sur place)</li>
-            </ul>
-          </article>
+          <details class="price-card" style="cursor: pointer;">
+            <summary style="font-weight: bold; font-size: 1.1rem; outline: none;">Combien de temps à l'avance faut-il réserver ?</summary>
+            <p style="margin-top: 12px; opacity: 0.9;">Le plus tôt est le mieux, surtout pour la période estivale (mariages et baptêmes). Cependant, n'hésitez pas à nous contacter pour les demandes de dernière minute selon nos disponibilités.</p>
+          </details>
 
-          <article class="price-card premium-card">
-            <div class="price-top">
-              <span class="pack-number">03</span>
-              <span class="pack-tag">Photo</span>
-            </div>
-            <h3>Premium</h3>
-            <p class="price"><span>450</span> €</p>
-            <p class="price-subtitle">Clé USB + 50 tirages 10 × 15 cm</p>
-            <ul>
-              <li>Couverture photo de l'événement (jusqu'à 4h de présence)</li>
-              <li>Toutes les photos remises sur clé USB</li>
-              <li>Rendu authentique et naturel (sans retouche artificielle)</li>
-              <li>50 tirages 10 × 15 cm inclus (imprimés sur place)</li>
-              <li>🎁 1 photo des mariés (format A4 ou A3 au choix) offerte</li>
-            </ul>
-          </article>
-        </div>
+          <details class="price-card" style="cursor: pointer;">
+            <summary style="font-weight: bold; font-size: 1.1rem; outline: none;">Le matériel et l'installation sont-ils inclus ?</summary>
+            <p style="margin-top: 12px; opacity: 0.9;">Oui, l'ensemble du matériel (sonorisation, jeux de lumières, micros) ainsi que l'installation et le démontage sont intégralement gérés par nos soins et inclus dans la prestation.</p>
+          </details>
 
-        <div class="photo-retention-note">
-          <strong>Conservation des photographies : 6 mois.</strong>
-          <span>Après remise des photos, VALTRACK Sons et Lumières conserve une copie des fichiers pendant 6 mois. Passé ce délai, les fichiers seront supprimés définitivement. Pensez à effectuer vos propres sauvegardes à partir de la clé USB remise avec votre prestation.</span>
-        </div>
-
-        <div class="fee-pills">
-          <span>Tirage 10 × 15 : 3 € / photo</span>
-          <span>Tirage A4 : 10 € / photo</span>
-          <span>Tirage A3 : 20 € / photo</span>
-          <span>Heure supplémentaire : 50 €/h</span>
-          <span>30 km inclus (puis 0,70 €/km supplémentaire)</span>
+          <details class="price-card" style="cursor: pointer;">
+            <summary style="font-weight: bold; font-size: 1.1rem; outline: none;">Peut-on personnaliser la liste des musiques ?</summary>
+            <p style="margin-top: 12px; opacity: 0.9;">Absolument ! Nous préparons la soirée en amont selon vos goûts musicaux, vos morceaux indispensables et ceux que vous ne souhaitez pas entendre.</p>
+          </details>
         </div>
       </div>
     </section>
 
-    <section class="section combo-section" id="packs-duo">
-      <div class="container">
-        <div class="section-heading duo-heading">
-          <div>
-            <span class="section-kicker">PACKS DUO</span>
-            <h2>Sonorisation + photographie.</h2>
-          </div>
-          <p>Trois formules combinées avec un tarif avantageux par rapport aux prestations prises séparément.</p>
-        </div>
-
-        <div class="pricing-grid duo-pricing-grid">
-          <article class="price-card">
-            <div class="price-top">
-              <span class="pack-number">01</span>
-              <span class="pack-tag">Duo</span>
-            </div>
-            <h3>Digital</h3>
-            <p class="price"><span>450</span> €</p>
-            <p class="duo-old-price">au lieu de 500 € au détail</p>
-            <p class="price-subtitle">Pack Sono Basique + Pack Photo Numérique</p>
-            <ul>
-              <li>Sonorisation adaptée</li>
-              <li>Installation et démontage inclus</li>
-              <li>Couverture photo</li>
-              <li>Clé USB avec toutes les photos</li>
-              <li>Rendu authentique et naturel (sans retouche artificielle)</li>
-            </ul>
-          </article>
-
-          <article class="price-card featured-card">
-            <div class="featured-glow"></div>
-            <div class="price-top">
-              <span class="pack-number">02</span>
-              <span class="pack-tag accent">Duo</span>
-            </div>
-            <h3>Print</h3>
-            <p class="price"><span>600</span> €</p>
-            <p class="duo-old-price">au lieu de 700 € au détail</p>
-            <p class="price-subtitle">Pack Sono Ambiance + Pack Photo Standard</p>
-            <ul>
-              <li>Sonorisation, éclairage, jeux de lumière et effets</li>
-              <li>Installation et démontage inclus</li>
-              <li>Couverture photo + clé USB</li>
-              <li>Rendu authentique et naturel (sans retouche artificielle)</li>
-              <li>20 tirages 10 × 15 cm</li>
-            </ul>
-          </article>
-
-          <article class="price-card premium-card">
-            <div class="price-top">
-              <span class="pack-number">03</span>
-              <span class="pack-tag">Duo</span>
-            </div>
-            <h3>Prestige</h3>
-            <p class="price"><span>800</span> €</p>
-            <p class="duo-old-price">au lieu de 950 € au détail</p>
-            <p class="price-subtitle">Pack Sono Event + Pack Photo Premium</p>
-            <ul>
-              <li>Prestation DJ complète, animation, sonorisation, éclairage et effets</li>
-              <li>Installation et démontage inclus</li>
-              <li>Couverture photo + clé USB</li>
-              <li>Rendu authentique et naturel (sans retouche artificielle)</li>
-              <li>50 tirages 10 × 15 cm</li>
-              <li>🎁 1 photo des mariés (format A4 ou A3 au choix) offerte</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="fee-pills">
-          <span>Tirage 10 × 15 : 3 € / photo</span>
-          <span>Tirage A4 : 10 € / photo</span>
-          <span>Tirage A3 : 20 € / photo</span>
-          <span>Heure supplémentaire : 70 €/h</span>
-          <span>30 km inclus (puis 0,70 €/km supplémentaires)</span>
-          <span>Calcul du kilométrage : aller-retour</span>
-        </div>
-      </div>
-    </section>
-
+    <!-- CONTACT SECTION -->
     <section class="section contact-section" id="contact">
       <div class="container contact-compact">
         <div class="contact-compact-title">
