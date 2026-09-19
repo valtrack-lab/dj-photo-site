@@ -412,4 +412,10 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   .footer-legal {
     align-items: flex-start;
   }
+  
+}
+.brand-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
