@@ -26,22 +26,23 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
+
+/* Arrière-plan épuré (sans les ronds lumineux qui traversaient) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background:
-    radial-gradient(circle at 14% 12%, rgba(92,124,255,.13), transparent 30%),
-    radial-gradient(circle at 88% 20%, rgba(255,79,163,.09), transparent 24%);
+  background: linear-gradient(180deg, #070812 0%, #0d1020 100%);
 }
+
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, a { -webkit-tap-highlight-color: transparent; }
 .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
-
+/* HEADER & NAV */
 .site-header {
   position: sticky;
   top: 0;
@@ -112,7 +113,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .mobile-nav-inner > a:not(.btn) { padding: 11px 3px; color: #e3e7f8; }
 .mobile-nav .btn { margin-top: 8px; }
 
-
+/* HERO SECTION */
 .hero { position: relative; min-height: auto; display: flex; align-items: center; overflow: hidden; padding: 74px 0 82px; }
 .hero::before {
   content: "";
@@ -150,13 +151,11 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .glow-one { width: 420px; height: 420px; background: #274aff; top: 10%; right: -180px; }
 .glow-two { width: 320px; height: 320px; background: #ff4f9f; bottom: -170px; left: 16%; }
 
-
 .section { padding: 96px 0; }
 .section-dark { background: linear-gradient(180deg, #090b17 0%, #0a0d19 100%); }
 .section-heading { display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: flex-end; margin-bottom: 34px; }
 .section-heading h2 { margin: 12px 0 0; font-size: clamp(2.25rem, 4.6vw, 4rem); line-height: 1.02; letter-spacing: -.045em; }
 .section-heading p { margin: 0 0 7px; color: var(--muted); }
-
 
 .pricing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; width: 100%; }
 .price-card {
@@ -184,7 +183,7 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .price-card li { position: relative; padding: 8px 0 8px 24px; border-bottom: 1px solid rgba(255,255,255,.055); }
 .price-card li::before { content: "✦"; position: absolute; left: 0; color: var(--cyan); font-size: .8rem; }
 
-
+/* FAQ LIST & ITEMS */
 .faq-list {
   display: flex;
   flex-direction: column;
@@ -195,17 +194,19 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 }
 
 .faq-item {
-  background: rgba(255, 255, 255, 0.03);
+  background: #111529; /* Fond opaque pour empêcher toute transparence */
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 18px 22px;
   cursor: pointer;
   transition: border-color 0.2s ease, background 0.2s ease;
   width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .faq-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: #171b33;
   border-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -214,25 +215,16 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   font-size: 1.05rem;
   color: #fff;
   outline: none;
-  list-style: none;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
+/* Suppression des pseudo-éléments résiduels */
+.faq-item::after,
 .faq-item summary::after {
-  content: "+";
-  font-size: 1.3rem;
-  color: var(--cyan);
-  transition: transform 0.2s ease;
-}
-
-.faq-item[open] summary::after {
-  transform: rotate(45deg);
+  display: none !important;
+  content: none !important;
 }
 
 .faq-item p {
@@ -242,13 +234,11 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   line-height: 1.6;
 }
 
-
 .event-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .event-grid article { padding: 23px 18px; min-height: 190px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,.025); }
 .event-grid article > span { font-size: 1.45rem; }
 .event-grid h3 { margin: 24px 0 8px; font-size: 1.02rem; }
 .event-grid p { margin: 0; color: #8f98b7; font-size: .86rem; line-height: 1.55; }
-
 
 .fee-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; }
 .fee-pills span { padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line); color: #8f99ba; font-size: .76rem; }
@@ -256,7 +246,6 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .photo-retention-note { margin-top: 26px; padding: 18px 20px; border-left: 2px solid var(--pink); background: rgba(255,255,255,.035); border-radius: 0 16px 16px 0; }
 .photo-retention-note strong, .photo-retention-note span { display: block; }
 .photo-retention-note span { margin-top: 5px; color: var(--muted); font-size: .92rem; }
-
 
 .contact-section .contact-compact { display: flex; flex-direction: column; }
 .contact-section .contact-compact-title { margin-bottom: 24px; }
@@ -307,14 +296,4 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   .event-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-legal { align-items: flex-start; }
-}
-
-
-.faq-item::after {
-  display: none !important;
-  content: none !important;
-}
-
-.faq-item {
-  overflow: hidden; 
 }
