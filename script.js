@@ -28,3 +28,14 @@ const yearEl = document.getElementById("year");
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
+
+// Remontée fluide en haut de page lors du clic sur le logo / ancre #top
+document.querySelectorAll('a[href="#top"], a[href="#"]').forEach(function (anchor) {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+});
