@@ -244,28 +244,66 @@ h1 {
   color: #f1f3f9;
   cursor: default;
   user-select: none;
+  will-change: transform;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
               border-color 0.3s ease,
               box-shadow 0.3s ease;
-  animation: floatSticker 4s ease-in-out infinite alternate;
 }
 
 .hero-tarifs .hero-badge:hover {
-  transform: scale(1.08) translateY(-4px) !important;
   border-color: rgba(22, 224, 255, 0.5);
   box-shadow: 0 12px 28px rgba(22, 224, 255, 0.2);
   background: rgba(20, 26, 50, 0.9);
 }
 
 .hero-tarifs .badge-icon { font-size: 0.95rem; }
-.hero-tarifs .badge-top-left { top: -10px; left: 20px; transform: rotate(-5deg); animation-delay: 0s; }
-.hero-tarifs .badge-top-right { top: -5px; right: 20px; transform: rotate(5deg); animation-delay: 1s; }
-.hero-tarifs .badge-bottom-left { bottom: 0px; left: 40px; transform: rotate(4deg); animation-delay: 1.8s; }
-.hero-tarifs .badge-bottom-right { bottom: 5px; right: 50px; transform: rotate(-4deg); animation-delay: 0.7s; }
 
-@keyframes floatSticker {
-  0% { margin-top: 0px; }
-  100% { margin-top: -7px; }
+/* Positionnement & Amorce des animations par GPU via variables CSS (--base-rot) */
+.hero-tarifs .badge-top-left { 
+  top: -10px; 
+  left: 20px; 
+  --base-rot: -5deg; 
+  animation: floatStickerGpu 2.8s ease-in-out infinite alternate; 
+}
+.hero-tarifs .badge-top-right { 
+  top: -5px; 
+  right: 20px; 
+  --base-rot: 5deg; 
+  animation: floatStickerGpu 3.2s ease-in-out infinite alternate 0.6s; 
+}
+.hero-tarifs .badge-bottom-left { 
+  bottom: 0px; 
+  left: 40px; 
+  --base-rot: 4deg; 
+  animation: floatStickerGpu 3s ease-in-out infinite alternate 1.2s; 
+}
+.hero-tarifs .badge-bottom-right { 
+  bottom: 5px; 
+  right: 50px; 
+  --base-rot: -4deg; 
+  animation: floatStickerGpu 3.5s ease-in-out infinite alternate 0.3s; 
+}
+
+.hero-tarifs .badge-top-left:hover { transform: rotate(-5deg) scale(1.08) translateY(-4px) translateZ(0); }
+.hero-tarifs .badge-top-right:hover { transform: rotate(5deg) scale(1.08) translateY(-4px) translateZ(0); }
+.hero-tarifs .badge-bottom-left:hover { transform: rotate(4deg) scale(1.08) translateY(-4px) translateZ(0); }
+.hero-tarifs .badge-bottom-right:hover { transform: rotate(-4deg) scale(1.08) translateY(-4px) translateZ(0); }
+
+/* Animation 100% matérielle (GPU) basée sur translate3d */
+@keyframes floatStickerGpu {
+  0% { 
+    transform: rotate(var(--base-rot)) translate3d(0, 0, 0); 
+  }
+  100% { 
+    transform: rotate(var(--base-rot)) translate3d(0, -8px, 0); 
+  }
+}
+
+/* Accessibilité : Désactivation pour les utilisateurs sensibles au mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .hero-tarifs .hero-badge {
+    animation: none !important;
+  }
 }
 
 
