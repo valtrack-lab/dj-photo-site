@@ -140,12 +140,23 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 h1 { 
   margin: 12px 0 0; 
-  font-size: clamp(2rem, 3.8vw, 3.6rem); 
+  font-size: clamp(1.8rem, 3.2vw, 3.2rem); 
   line-height: 1.1; 
   letter-spacing: -.04em; 
-  white-space: nowrap;
+  white-space: nowrap !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
 }
-h1 em { display: block; font-style: normal; color: transparent; background: linear-gradient(100deg, var(--cyan), #9a7bff 55%, var(--pink)); background-clip: text; -webkit-background-clip: text; }
+
+h1 em, h1 span { 
+  display: inline-block !important; 
+  color: transparent; 
+  background: linear-gradient(100deg, var(--cyan), #9a7bff 55%, var(--pink)); 
+  background-clip: text; 
+  -webkit-background-clip: text; 
+}
 
 .hero-visual {
   width: 100%;
