@@ -27,7 +27,6 @@ body {
   overflow-x: hidden;
 }
 
-
 body::before {
   content: "";
   position: fixed;
@@ -80,6 +79,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .desktop-nav { display: flex; align-items: center; gap: 28px; font-size: .95rem; }
 .desktop-nav > a:not(.btn) { color: #dfe4fa; transition: color .2s ease; }
 .desktop-nav > a:not(.btn):hover, .desktop-nav > a.active { color: var(--cyan); }
+
 
 .btn {
   display: inline-flex;
@@ -137,9 +137,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .eyebrow { display: flex; align-items: center; justify-content: center; gap: 10px; }
 .eyebrow span { width: 28px; height: 1px; background: linear-gradient(90deg, var(--cyan), var(--pink)); }
 
-h1 { margin: 12px 0 0; font-size: clamp(2.8rem, 5.5vw, 5.2rem); line-height: 1.05; letter-spacing: -.04em; }
-h1 em { display: block; font-style: normal; color: transparent; background: linear-gradient(100deg, var(--cyan), #9a7bff 55%, var(--pink)); background-clip: text; -webkit-background-clip: text; }
 
+h1 { 
+  margin: 12px 0 0; 
+  font-size: clamp(2rem, 3.8vw, 3.6rem); 
+  line-height: 1.1; 
+  letter-spacing: -.04em; 
+  white-space: nowrap;
+}
+h1 em { display: block; font-style: normal; color: transparent; background: linear-gradient(100deg, var(--cyan), #9a7bff 55%, var(--pink)); background-clip: text; -webkit-background-clip: text; }
 
 .hero-visual {
   width: 100%;
@@ -168,12 +174,13 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .visual-label span { font-size: .75rem; letter-spacing: .18em; color: #9deaff; font-weight: 800; }
 .visual-label strong { font-size: .96rem; text-align: right; }
 
+
 .hero-lead { 
   max-width: 820px; 
-  margin: 0 auto; 
+  margin: 24px auto 0; 
   color: #c0c7df; 
   font-size: clamp(1.05rem, 1.4vw, 1.2rem); 
-  line-height: 1.65; 
+  line-height: 1.8; 
 }
 
 .hero-glow { position: absolute; border-radius: 50%; filter: blur(35px); opacity: .25; pointer-events: none; }
@@ -201,7 +208,6 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .featured-card { border-color: rgba(85,210,255,.27); background: linear-gradient(180deg, rgba(35,191,255,.10), rgba(255,255,255,.03)); }
 .price-card h3 { margin: 12px 0 0; font-size: 1.45rem; }
 .price-subtitle { margin: 10px 0 0; color: #d5daf0; font-weight: 500; font-size: 0.95rem; }
-
 
 .faq-list {
   display: flex;
@@ -259,6 +265,7 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   gap: 16px; 
   width: 100%;
   text-align: left;
+  margin-top: 48px;
 }
 
 .event-grid article { 
@@ -278,7 +285,6 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .event-grid article > span { font-size: 1.6rem; }
 .event-grid h3 { margin: 16px 0 8px; font-size: 1.05rem; }
 .event-grid p { margin: 0; color: #8f98b7; font-size: .86rem; line-height: 1.5; }
-
 
 .contact-section .contact-compact { display: flex; flex-direction: column; }
 .contact-section .contact-compact-title { margin-bottom: 24px; }
@@ -301,7 +307,6 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
 .social-row a { padding: 8px 11px; border-radius: 999px; border: 1px solid var(--line); color: #8f99ba; font-size: .8rem; }
 .social-row a:hover { color: #fff; border-color: rgba(255,255,255,.22); }
 
-
 .footer { border-top: 1px solid var(--line); padding: 26px 0; background: #060710; }
 .footer-inner { display: flex; justify-content: space-between; gap: 30px; align-items: center; }
 .footer-brand { display: flex; align-items: center; gap: 12px; }
@@ -323,6 +328,14 @@ h1 em { display: block; font-style: normal; color: transparent; background: line
   .pricing-grid { grid-template-columns: 1fr; }
   .event-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .visual-frame, .visual-frame img { max-height: 260px; height: 260px; }
+}
+
+@media (max-width: 768px) {
+  
+  h1 {
+    white-space: normal;
+    font-size: 2.2rem;
+  }
 }
 
 @media (max-width: 560px) {
