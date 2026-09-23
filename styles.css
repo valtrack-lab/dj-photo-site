@@ -358,20 +358,20 @@ h1 {
 }
 
 
-/* --- CORRECTION DES 5 VIGNETTES ÉVÉNEMENTS (Accueil) --- */
+
 .event-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 colonnes alignées côte à côte */
-  gap: 12px;                            /* Espacement plus fin */
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 12px;                            
   margin-top: 32px;
-  text-align: center;                  /* Textes centrés */
+  text-align: center;           
 }
 
 .event-grid article {
   background: var(--surface);
   border: 1px solid var(--line);
-  padding: 14px 10px;                   /* Rembourrage compact */
-  border-radius: 18px;                  /* Coins légèrement arrondis */
+  padding: 14px 10px;                   
+  border-radius: 18px;                
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -381,21 +381,21 @@ h1 {
 }
 
 .event-grid article span {
-  font-size: 1.3rem;                    /* Émojis/icônes plus petits */
+  font-size: 1.3rem;                    
   display: block;
   margin-bottom: 6px;
 }
 
 .event-grid article h3 {
   margin: 0 0 4px;
-  font-size: 0.88rem;                   /* Titres bien proportionnés */
+  font-size: 0.88rem;                  
   color: #fff;
   line-height: 1.2;
 }
 
 .event-grid article p {
   color: var(--muted);
-  font-size: 0.75rem;                   /* Textes descriptifs discrets */
+  font-size: 0.75rem;                  
   margin: 0;
   line-height: 1.25;
 }
@@ -709,7 +709,7 @@ h1 {
 @media (max-width: 1050px) {
   .hero-grid { grid-template-columns: 1fr; }
   .section-heading { grid-template-columns: 1fr; gap: 16px; }
-  .event-grid { grid-template-columns: repeat(3, 1fr); } /* 3 vignettes par ligne sur tablette */
+  .event-grid { grid-template-columns: repeat(3, 1fr); } 
 }
 
 @media (max-width: 860px) {
@@ -747,5 +747,5 @@ h1 {
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-legal { align-items: flex-start; }
   .social-row { flex-wrap: wrap; }
-  .event-grid { grid-template-columns: repeat(2, 1fr); } /* 2 vignettes par ligne sur téléphone */
+  .event-grid { grid-template-columns: repeat(2, 1fr); } 
 }
