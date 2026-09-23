@@ -258,7 +258,6 @@ h1 {
 
 .hero-tarifs .badge-icon { font-size: 0.95rem; }
 
-/* Positionnement & Amorce des animations par GPU via variables CSS (--base-rot) */
 .hero-tarifs .badge-top-left { 
   top: -10px; 
   left: 20px; 
@@ -289,7 +288,6 @@ h1 {
 .hero-tarifs .badge-bottom-left:hover { transform: rotate(4deg) scale(1.08) translateY(-4px) translateZ(0); }
 .hero-tarifs .badge-bottom-right:hover { transform: rotate(-4deg) scale(1.08) translateY(-4px) translateZ(0); }
 
-/* Animation 100% matérielle (GPU) basée sur translate3d */
 @keyframes floatStickerGpu {
   0% { 
     transform: rotate(var(--base-rot)) translate3d(0, 0, 0); 
@@ -299,7 +297,6 @@ h1 {
   }
 }
 
-/* Accessibilité : Désactivation pour les utilisateurs sensibles au mouvement */
 @media (prefers-reduced-motion: reduce) {
   .hero-tarifs .hero-badge {
     animation: none !important;
@@ -314,7 +311,7 @@ h1 {
 .section-heading p { margin: 0 0 7px; color: var(--muted); }
 
 
-.event-grid,
+/* Grille générale pour les cartes de services/fonctionnalités (autres pages) */
 .services-grid, 
 .features-grid {
   display: grid;
@@ -324,7 +321,6 @@ h1 {
   text-align: left;
 }
 
-.event-grid article,
 .service-card, 
 .feature-card {
   background: var(--surface);
@@ -334,21 +330,18 @@ h1 {
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.event-grid article:hover,
 .service-card:hover, 
 .feature-card:hover {
   transform: translateY(-4px);
   border-color: rgba(22, 224, 255, 0.3);
 }
 
-.event-grid article span,
 .service-card .service-icon {
   font-size: 1.8rem;
   display: block;
   margin-bottom: 12px;
 }
 
-.event-grid article h3,
 .service-card h3, 
 .feature-card h3 {
   margin: 0 0 8px;
@@ -356,13 +349,55 @@ h1 {
   color: #fff;
 }
 
-.event-grid article p,
 .service-card p, 
 .feature-card p {
   color: var(--muted);
   font-size: 0.9rem;
   margin: 0;
   line-height: 1.5;
+}
+
+
+/* --- CORRECTION DES 5 VIGNETTES ÉVÉNEMENTS (Accueil) --- */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 colonnes alignées côte à côte */
+  gap: 12px;                            /* Espacement plus fin */
+  margin-top: 32px;
+  text-align: center;                  /* Textes centrés */
+}
+
+.event-grid article {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 14px 10px;                   /* Rembourrage compact */
+  border-radius: 18px;                  /* Coins légèrement arrondis */
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.event-grid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(22, 224, 255, 0.3);
+}
+
+.event-grid article span {
+  font-size: 1.3rem;                    /* Émojis/icônes plus petits */
+  display: block;
+  margin-bottom: 6px;
+}
+
+.event-grid article h3 {
+  margin: 0 0 4px;
+  font-size: 0.88rem;                   /* Titres bien proportionnés */
+  color: #fff;
+  line-height: 1.2;
+}
+
+.event-grid article p {
+  color: var(--muted);
+  font-size: 0.75rem;                   /* Textes descriptifs discrets */
+  margin: 0;
+  line-height: 1.25;
 }
 
 
@@ -674,6 +709,7 @@ h1 {
 @media (max-width: 1050px) {
   .hero-grid { grid-template-columns: 1fr; }
   .section-heading { grid-template-columns: 1fr; gap: 16px; }
+  .event-grid { grid-template-columns: repeat(3, 1fr); } /* 3 vignettes par ligne sur tablette */
 }
 
 @media (max-width: 860px) {
@@ -706,9 +742,10 @@ h1 {
   .hero-tarifs .hero-text-content { order: 1; }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 580px) {
   .container { width: min(var(--max), calc(100% - 28px)); }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-legal { align-items: flex-start; }
   .social-row { flex-wrap: wrap; }
+  .event-grid { grid-template-columns: repeat(2, 1fr); } /* 2 vignettes par ligne sur téléphone */
 }
