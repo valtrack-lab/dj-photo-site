@@ -370,7 +370,7 @@ h1 {
   background: var(--surface);
   border: 1px solid var(--line);
   padding: 14px 10px;                    
-  border-radius: 18px;                 
+  border-radius: 18px;                  
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -387,14 +387,14 @@ h1 {
 
 .event-grid article h3 {
   margin: 0 0 4px;
-  font-size: 0.88rem;                   
+  font-size: 0.88rem;                    
   color: #fff;
   line-height: 1.2;
 }
 
 .event-grid article p {
   color: var(--muted);
-  font-size: 0.75rem;                   
+  font-size: 0.75rem;                    
   margin: 0;
   line-height: 1.25;
 }
@@ -729,6 +729,7 @@ h1 {
 
 .gallery-block {
   margin-bottom: 48px;
+  width: 100%;
 }
 
 .gallery-block-title {
@@ -740,13 +741,15 @@ h1 {
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
 }
 
-/* Grille de cartes équilibrée */
+/* Grille sur 2 colonnes égales qui occupent 100% de la largeur de la ligne */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  width: 100%;
   align-items: stretch;
 }
 
@@ -754,11 +757,12 @@ h1 {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, border-color 0.2s ease;
+  width: 100%;
 }
 
 .gallery-card:hover {
@@ -766,14 +770,14 @@ h1 {
   border-color: rgba(22, 224, 255, 0.3);
 }
 
-/* Encadrement et dimensionnement uniforme de l'image */
+/* Encadrement et dimensionnement agrandi de la photo */
 .gallery-image-wrapper {
   position: relative;
   width: 100%;
-  height: 220px; /* Cadre unique pour toutes les photos */
-  border-radius: 16px;
+  height: 380px;
+  border-radius: 18px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   background: rgba(0, 0, 0, 0.4);
   flex-shrink: 0;
 }
@@ -781,20 +785,20 @@ h1 {
 .gallery-image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Remplissage propre sans déformation */
+  object-fit: cover;
   object-position: center;
   display: block;
 }
 
 .gallery-card h4 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #fff;
   margin: 0 0 8px 0;
   font-weight: 700;
 }
 
 .gallery-card p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--muted);
   margin: 0;
   line-height: 1.4;
@@ -845,6 +849,15 @@ h1 {
   .hero-tarifs .badge-bottom-left { order: 4; }
   .hero-tarifs .badge-bottom-right { order: 5; }
   .hero-tarifs .hero-text-content { order: 1; }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-image-wrapper {
+    height: 260px;
+  }
 }
 
 @media (max-width: 580px) {
