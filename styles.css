@@ -311,7 +311,7 @@ h1 {
 .section-heading p { margin: 0 0 7px; color: var(--muted); }
 
 
-/* Grille générale pour les cartes de services/fonctionnalités (autres pages) */
+/* Grille générale pour les cartes de services/fonctionnalités */
 .services-grid, 
 .features-grid {
   display: grid;
@@ -358,19 +358,19 @@ h1 {
 }
 
 
-
 .event-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 24px;                           
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 12px;                             
   margin-top: 32px;
+  text-align: center;            
 }
 
 .event-grid article {
   background: var(--surface);
   border: 1px solid var(--line);
-  padding: 14px 10px;                   
-  border-radius: 18px;                
+  padding: 14px 10px;                    
+  border-radius: 18px;                 
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
@@ -387,14 +387,14 @@ h1 {
 
 .event-grid article h3 {
   margin: 0 0 4px;
-  font-size: 0.88rem;                  
+  font-size: 0.88rem;                   
   color: #fff;
   line-height: 1.2;
 }
 
 .event-grid article p {
   color: var(--muted);
-  font-size: 0.75rem;                  
+  font-size: 0.75rem;                   
   margin: 0;
   line-height: 1.25;
 }
@@ -705,9 +705,116 @@ h1 {
 .footer-legal a { color: #717b9a; font-size: .79rem; }
 
 
+/* ==========================================================================
+   GALERIE PHOTO & MATÉRIEL
+   ========================================================================== */
+
+.hero-compact {
+  min-height: auto;
+  padding: 120px 0 40px 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.eyebrow-center {
+  justify-content: center;
+}
+
+.hero-lead-center {
+  margin: 16px auto 0 auto;
+  max-width: 700px;
+}
+
+.gallery-block {
+  margin-bottom: 48px;
+}
+
+.gallery-block-title {
+  font-size: 1.3rem;
+  color: var(--cyan);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Grille de cartes équilibrée */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.gallery-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(22, 224, 255, 0.3);
+}
+
+/* Encadrement et dimensionnement uniforme de l'image */
+.gallery-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px; /* Cadre unique pour toutes les photos */
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.gallery-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Remplissage propre sans déformation */
+  object-position: center;
+  display: block;
+}
+
+.gallery-card h4 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.gallery-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.price-subtitle-cyan {
+  margin-top: 12px;
+  color: #8fdfff;
+}
+
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================================================== */
+
 @media (max-width: 1050px) {
   .hero-grid { grid-template-columns: 1fr; }
   .section-heading { grid-template-columns: 1fr; gap: 16px; }
+  .event-grid { grid-template-columns: repeat(3, 1fr); } 
 }
 
 @media (max-width: 860px) {
@@ -745,77 +852,5 @@ h1 {
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .footer-legal { align-items: flex-start; }
   .social-row { flex-wrap: wrap; }
-}
-
-
-/* ==========================================================================
-   MODULE GALERIE PHOTO & MATÉRIEL
-   ========================================================================== */
-
-.hero-compact {
-  min-height: auto;
-  padding: 120px 0 40px 0;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.eyebrow-center {
-  justify-content: center;
-}
-
-.hero-lead-center {
-  margin: 16px auto 0 auto;
-  max-width: 700px;
-}
-
-.gallery-block {
-  margin-bottom: 40px;
-}
-
-.gallery-block-title {
-  font-size: 1.3rem;
-  color: var(--color-primary, #60a5fa);
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 8px;
-}
-
-.gallery-card {
-  padding: 12px;
-  text-align: center;
-}
-
-.gallery-image-wrapper {
-  border-radius: 8px;
-  overflow: hidden;
-  height: 340px;
-  margin-bottom: 12px;
-  background: rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.gallery-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.gallery-card h4 {
-  font-size: 1.1rem;
-  margin-bottom: 4px;
-}
-
-.gallery-card p {
-  font-size: 0.85rem;
-  opacity: 0.8;
-}
-
-.price-subtitle-cyan {
-  margin-top: 12px;
-  color: #8fdfff;
+  .event-grid { grid-template-columns: repeat(2, 1fr); } 
 }
